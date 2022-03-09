@@ -7,6 +7,9 @@ access_customer_survey,customer_survey,model_customer_survey,base.group_user,1,1
 access_survey_question,survey_questions,model_survey_questions,base.group_user,1,1,1,1
 access_survey_question_lines,survey_question_lines,model_survey_question_lines,base.group_user,1,1,1,1
 access_car_inspection,car_inspection,model_car_inspection,base.group_user,1,1,1,1
+access_car_insurance,car_inspection,model_insurance_claim_line,base.group_user,1,1,1,1
+access_car_warrenty,car_inspection,model_warrenty_claim_line,base.group_user,1,1,1,1
+
 
 
 
