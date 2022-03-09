@@ -206,12 +206,14 @@ class CarInspection(models.Model):
     date = fields.Date()
     partner = fields.Many2one('res.partner')
     car_name = fields.Char()
-    insurance_id = fields.Many2one('sale.order')
+    insurance_claim = fields.Char(readonly="1")
 
-    warranty_id = fields.Many2one('sale.order')
+    warranty_claim = fields.Char(readonly="1")
 
     file_upload = fields.Binary('File', attachment=True)
     inspection_ids = fields.One2many('gate.order.line', 'inspection_id')
+    insurance_ids = fields.One2many('insurance.claim.line', 'insurance_id')
+    warrenty_ids = fields.One2many('warrenty.claim.line', 'warrenty_id')
 
     # state = fields.Selection([('Draft', 'Draft'), ('confirmed','Confirmed'), ('so','Sale Order'),('in_progress','In Progress'),('complete','Complete')], default='Draft')
     state = fields.Selection([('Draft', 'Draft'), ('receiving_checklist', 'Receiving Checklist'), ('so', 'Sale Order'),
@@ -329,7 +331,52 @@ class CarInspection(models.Model):
                     'product_uom_qty': lines.product_uom_qty
                 }
                 so_line = self.env['sale.order.line'].create(lines)
+   # insurance claim
+        product_line_i = self.env['insurance.claim.line'].search([('insurance_id', '=', self.id)])
+        name = self.env['ir.sequence'].next_by_code('sale.seq')
 
+        if product_line_i:
+            vlas = {
+                'partner_id': self.partner.id,
+                'date_order': self.date,
+                'state': 'sale',
+                'name_seq': self.name_seq,
+            }
+            so = self.env['sale.order'].create(vlas)
+            self.insurance_claim = so.name
+
+            for lines_i in product_line_i:
+                lines_i = {
+                    'order_id': so.id,
+                    'name': lines_i.name,
+                    'product_id': lines_i.product_id.id,
+                    'product_uom_qty': lines_i.product_uom_qty
+                }
+                so_line = self.env['sale.order.line'].create(lines_i)
+
+# warrenty claim
+        product_line_c = self.env['warrenty.claim.line'].search([('warrenty_id', '=', self.id)])
+        name = self.env['ir.sequence'].next_by_code('sale.seq')
+
+        if product_line_c:
+            vlas = {
+                'partner_id': self.partner.id,
+                'date_order': self.date,
+                'state': 'sale',
+                'name_seq': self.name_seq,
+            }
+            so = self.env['sale.order'].create(vlas)
+            self.warranty_claim = so.name
+
+            for lines_c in product_line_c:
+                lines_c = {
+                    'order_id': so.id,
+                    'name': lines_c.name,
+                    'product_id': lines_c.product_id.id,
+                    'product_uom_qty': lines_c.product_uom_qty
+                }
+                so_line = self.env['sale.order.line'].create(lines_c)
+                
     def _check_invoice(self):
         sale_order = self.env['sale.order'].search([('name', '=', self.sale_o)]).invoice_ids
         if sale_order:
@@ -375,7 +422,7 @@ class CarInspection(models.Model):
             if self.chassis.partner_name:
                 self.partner = self.chassis.partner_name
             if self.chassis.car_name:
-                self.car_name = self.registration_no
+                self.registration_no = self.registration_no
             if res:
                 return res
 
@@ -422,9 +469,12 @@ class CrateCustomer(models.Model):
     @api.constrains('contact_no')
     def validate_contact_no(self):
         for record in self:
-            count = self.search_count([('contact_no', '=', self.contact_no)])
-            if count > 1:
+            if self.contact_no:
+              count = self.search_count([('contact_no', '=', self.contact_no)])
+              if count > 1:
                 raise ValidationError(_('This Contact Number has been already registered'))
+            else:
+                raise ValidationError(_('This Contact Number is required'))
 
     @api.model
     def create(self, vals):
@@ -459,6 +509,13 @@ class InheritResPartner(models.Model):
     institution = fields.Char()
     f_name = fields.Char()
     file_upload = fields.Binary('File', attachment=True)
+    
+    # function to concatenate parter name + phone
+    def name_get(self):
+        res = []
+        for rec in self:
+            res.append((rec.id, '%s - %s' % (rec.name, rec.phone) if rec.phone else rec.name))
+        return res
 
 
 class InheritProductProduct(models.Model):
@@ -505,3 +562,23 @@ class GateInOut(models.Model):
 
     def SetDelivered(self):
         self.state = 'Delivered'
+        
+class InsuranceClaim(models.Model):
+    _name = 'insurance.claim.line'
+
+    product_id = fields.Many2one('product.product', required=True)
+    insurance_id = fields.Many2one('car.inspection')
+    # gate_id = fields.Many2one('gate.inward.pass', string='Order Reference', ondelete='cascade', index=True, copy=False)
+    name = fields.Text(string='Description', required=1)
+    product_uom_qty = fields.Float(string='Quantity', digits='Product Unit of Measure', default=1.0)
+
+
+
+class WarrentyClaim(models.Model):
+    _name = 'warrenty.claim.line'
+
+    product_id = fields.Many2one('product.product', required=True)
+    warrenty_id = fields.Many2one('car.inspection')
+    # gate_id = fields.Many2one('gate.inward.pass', string='Order Reference', ondelete='cascade', index=True, copy=False)
+    name = fields.Text(string='Description', required=1)
+    product_uom_qty = fields.Float(string='Quantity', digits='Product Unit of Measure', default=1.0)
