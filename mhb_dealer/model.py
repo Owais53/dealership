@@ -65,6 +65,20 @@ class InheritSaleOrder(models.Model):
                         }
         }
 
+    def CreatePayment(self):
+        return {
+                'name': "Payments",
+                'view_mode': 'form',
+                'view_type': 'form',
+                'res_model': 'account.payment',
+                'type': 'ir.actions.act_window',
+                'target': 'current',
+                'domain': '[]',
+                'context': {'default_partner_type': 'customer','default_partner_id':self.partner_id.id ,'default_sale_order_id': self.id,
+                            'default_amount': self.amount_total
+                            }
+            }
+
     @api.onchange('opportunity_id')
     def GetSaleOrderLine(self):
         if self.opportunity_id:

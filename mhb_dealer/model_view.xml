@@ -118,6 +118,7 @@
                 <xpath expr="//form/header" position="inside">
                     <field name="check_po" invisible="1"/>
                     <button string="Create Purchase Order" class="oe_stat_button" type="object" name="CreatePurchaseOrder" attrs="{'invisible': ['|',('state', '!=','sale'),('check_po','!=',False)]}"/>
+                    <button string="Create Payment" class="oe_stat_button" type="object" name="CreatePayment" attrs="{'invisible': [('state', '!=','sale')]}"/>
                 </xpath>
                 <xpath expr="//field[@name='payment_term_id']" position="after">
                     <field name="delivery_date" string="Delivery Date"/>
