@@ -2,7 +2,7 @@
 {
     'name': 'Dealership',
     'category': 'misc',
-    'depends': ['sale','purchase','crm','account'],
+    'depends': ['sale','purchase','crm'],
     'description': """
 """,
     'data': [

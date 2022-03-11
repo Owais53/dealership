@@ -5,12 +5,13 @@
             <field name="model">walk.in</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>j
+                    <group>
                         <field name="name"/>
                         <field name="cnic"/>
                         <field name="contact_no"/>
                         <field name="product_id" widget="many2many_tags"/>
                         <field name="description"/>
+                        <field name="en_id"  string="Entertained By" readonly="1"/>
                     </group>
                 </form>
             </field>
@@ -158,6 +159,16 @@
                     </group>
                 </xpath>
 
+            </field>
+        </record>
+         <record id="view_users_inherit_new" model="ir.ui.view">
+            <field name="name">res.users.inherit.new</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']/group/field[@name='partner_id']" position="after">
+                    <field name="categ_id"/>
+                </xpath>
             </field>
         </record>
         <record id="view_crm_lead_inherit_new" model="ir.ui.view">
@@ -403,6 +414,26 @@
                             </group>
 
                         </page>
+                             <page string="Insurance Claim">
+                                <field name='insurance_ids' string="Insurance ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                             </field>
+                         </page>
+                         <page string="warrenty Claim">
+                                <field name='warrenty_ids' string="Warrenty ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                             </field>
+                         </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -419,7 +450,7 @@
                     <field name="date"  string="Date"/>
                     <field name="gate_number"  string="Gate #"/>
                     <field name="chassis"  string="Chassis"/>
-                    <field name="en_id"  string="Enertained By"/>
+                    <field name="en_id"  string="Entertained By"/>
                     <field name="state"  string="State"/>
                 </tree>
             </field>
@@ -512,8 +543,35 @@
 
 
 
+       <record id="access_product_categ" model="res.groups">
+            <field name="name">Users: Access Product Category</field>
+        </record>
 
+       <record id="show_specific_products" model="ir.rule">
+       <field name="name">User can only see Specific Product Category</field>
+       <field name="model_id" ref="product.model_product_template"/>
+       <field name="groups" eval="[(4, ref('access_product_categ'))]"/>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="True"/>
+       <field name="perm_create" eval="True"/>
+       <field name="perm_unlink" eval="False"/>
+      <field name="domain_force">[('categ_id','=',user.categ_id.id)]</field>
+      </record>
 
+       <record id="access_walkin_customer" model="res.groups">
+            <field name="name">Users: Access WalkIn Customer</field>
+        </record>
+
+       <record id="show_specific_walkin_customer" model="ir.rule">
+       <field name="name">User can only see Specific WalkIn Customer</field>
+       <field name="model_id" ref="model_walk_in"/>
+       <field name="groups" eval="[(4, ref('access_walkin_customer'))]"/>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="True"/>
+       <field name="perm_create" eval="True"/>
+       <field name="perm_unlink" eval="False"/>
+      <field name="domain_force">[('en_id','=',user.id)]</field>
+      </record>
 
 
         <record model="ir.actions.act_window" id="action_customer_survey">
