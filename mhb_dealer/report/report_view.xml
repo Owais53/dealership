@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+        <!-- QWeb Reports -->
+
+        <report
+            id="report_print_car_inspection"
+            model="car.inspection"
+            report_type="qweb-pdf"
+            string="Car Inspection Report"
+            name="mhb_dealer.car_inspection_report_template"
+            file="mhb_dealer.car_inspection_report_template"
+        />
+        <report
+            id="report_print_provisional_sale_order"
+            model="sale.order"
+            report_type="qweb-pdf"
+            string="Provisional Sale Order"
+            name="mhb_dealer.provisional_sale_order_template"
+            file="mhb_dealer.provisional_sale_order_template"
+        />
+</openerp>

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="mhb_dealer.car_inspection_report_template">
+
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+
+                    <div class="oe_structure"/>
+                    <br/>
+
+                    <div>
+                        <h3 class="text-center" >
+                            <strong>INSPECTION FORM</strong>
+                        </h3>
+                    </div>
+
+                    <div>
+
+                    </div>
+<!--                        #########################Basic Details######################################################################-->
+                    <br/>
+                    <div class="row mt32 mb32" id="informations" style="margin:auto;">
+                    <div>
+                        <table style="border:1px solid black;margin-right:40%;">
+                            <tbody class="sale_tbody">
+                                <tr>
+                                    <td class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>Customer:</strong>
+                                    </td>
+                                    <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.partner"/>
+                                    </td>
+<!--                                    <span style="font-size:18px; font-weight:bold;">Customer<span style="font-size:16px;" t-if="doc.partner" t-field="doc.partner"/>-->
+<!--                                    </span>-->
+
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>Address:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <span t-field="doc.address"/>
+                                    </td>
+
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>User:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.user_id"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Chassis Number:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.chassis"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Insurance Claim:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.insurance_id"/>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                             <tbody class="sale_tbody">
+                                <tr>
+                                    <td width="3%" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Mobile:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.mobile"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Phone:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.phone"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Promise Date:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.date"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Registration:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.registration_no"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Name Sequence:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.name_seq"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+                            <tbody class="sale_tbody">
+                                <tr>
+                                    <td width="3%" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Engine No:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.engine_no"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Make:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.make"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Model:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.model"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Color:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.color"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Km:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.km"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                             <tbody class="sale_tbody">
+                                 <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Warranty Claim:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.warranty_id"/>
+                                    </td>
+                                 <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Sale Order Reference:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.sale_o"/>
+                                    </td>
+
+                             </tbody>
+                        </table>
+
+
+
+                </div>
+                    </div>
+
+                 <br/><br/><br/>
+<!--###############product detials##################################################-->
+                       <h4 class="text-center">
+                            <strong>PRODUCT DETAIL</strong>
+                        </h4>
+                        <br/><br/>
+                    <div class="row mt32 mb32" id="informations">
+<!--                    <div style="border: 2px solid black;">-->
+
+
+                        <table>
+                            <tbody class="sale_tbody">
+                                <thead>
+
+                                <tr>
+                                    <td width="2%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;">
+                                    <strong>Products</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                    <strong>Description</strong>
+                                    </td>
+                                    <td width="2%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;">
+                                    <strong>Quantity</strong>
+                                    </td>
+
+                                </tr>
+                                </thead>
+                                 <tr t-foreach="doc.inspection_ids" t-as="l">
+
+                                     <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="l.product_id"/>
+                                     </td>
+                                     <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="l.name"/>
+                                     </td>
+                                     <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="l.product_uom_qty"/>
+                                     </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/><br/><br/>
+
+ <!--receiving check-->
+                        <h4 class="text-center">
+                            <strong>RECEIVING CHECKLIST</strong>
+                        </h4>
+                        <br/><br/><br/>
+
+
+                    <div class="row mt32 mb32" id="informations">
+
+                        <table>
+                            <tbody class="sale_tbody">
+                                <tr>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>Cassettes:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <span t-field="doc.cassettes_player"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>CD:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <span t-field="doc.cd"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>Cassettes Player :</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;"  >
+                                        <span t-field="doc.cassettes"/>
+                                    </td>
+                                     <td width="3%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>CIG Lighter:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <span t-field="doc.cig"/>
+                                    </td>
+
+
+                                </tr>
+
+                            </tbody>
+                             <tbody class="sale_tbody">
+                                <tr>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>Floor Mats:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <span t-field="doc.floor"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>R.V Mirror:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.rv"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>S.V Mirror:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.sv"/>
+                                    </td>
+                                     <td width="3%"  class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Wiper Blade:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.wiper"/>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <tbody class="sale_tbody">
+                                <tr>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>V.I.N Blade:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.vin"/>
+                                    </td>
+
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Wheel Spanner:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.wheel"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Tool Kit:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.tool"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Jack and Handle:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.jack"/>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Spare Wheel</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.spare"/>
+                                    </td>
+
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Monogram:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.monogram"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Mud Flap:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.mud"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Top Cover:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.top_cover"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Original:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.original"/>
+                                    </td>
+                                    <div  style="border: 1px solid black;">
+                                    <td width="0.7" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Fuel:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.fuel"/>
+                                    </td>
+                                    </div>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+
+
+                </div>
+                        <br/><br/><br/>
+
+  <!--return check-->################################################################################################
+
+                        <h4 class="text-center">
+                            <strong>RETURN CHECKLIST</strong>
+                        </h4>
+                        <br/><br/>
+
+
+                    <div class="row mt32 mb32" id="informations">
+                    <div>
+                        <table>
+                            <tbody class="sale_tbody">
+                                <tr>
+                                     <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <strong>Cassettes:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
+                                        <span t-field="doc.cassettes_player1"/>
+                                    </td>
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>CD:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.cd1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Cassettes:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.cassettes1"/>
+                                    </td>
+                                     <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>CIG Lighter:</strong>
+                                    </td>
+
+                                    <td width="2%" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.cig1"/>
+                                    </td>
+
+
+                                </tr>
+
+                            </tbody>
+                             <tbody class="sale_tbody">
+                                <tr>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Floor Mats:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.floor1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>R.V Mirror:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.rv1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>S.V Mirror:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.sv1"/>
+                                    </td>
+                                     <td width="3%" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Wiper Blade:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.wiper1"/>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <tbody class="sale_tbody">
+                                <tr>
+                                    <td width="3%">
+                                        <strong>V.I.N Blade:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.vin1"/>
+                                    </td>
+
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Wheel Spanner:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.wheel1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Tool Kit:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.tool1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Jack and Handle:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.jack1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td width="3%">
+                                        <strong>Spare Wheel</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.spare1"/>
+                                    </td>
+
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Monogram:</strong>
+                                    </td>
+
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.monogram1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Mud Flap:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.mud1"/>
+                                    </td>
+
+                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <strong>Top Cover:</strong>
+                                    </td>
+                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
+                                        <span t-field="doc.top_cover1"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

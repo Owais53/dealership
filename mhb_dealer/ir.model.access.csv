@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_walk_in,walk_in,model_walk_in,base.group_user,1,1,1,0
+access_deliver_product,deliver_product,model_deliver_product,base.group_user,1,1,1,0
+access_gate_inward_pass,gate_inward_pass,model_gate_inward_pass,base.group_user,1,1,1,1
+access_gate_order_line,gate_order_line,model_gate_order_line,base.group_user,1,1,1,1
+access_customer_survey,customer_survey,model_customer_survey,base.group_user,1,1,1,1
+access_survey_question,survey_questions,model_survey_questions,base.group_user,1,1,1,1
+access_survey_question_lines,survey_question_lines,model_survey_question_lines,base.group_user,1,1,1,1
+access_car_inspection,car_inspection,model_car_inspection,base.group_user,1,1,1,1
+access_car_insurance,car_inspection,model_insurance_claim_line,base.group_user,1,1,1,1
+access_car_warrenty,car_inspection,model_warrenty_claim_line,base.group_user,1,1,1,1
+
+
+
+
