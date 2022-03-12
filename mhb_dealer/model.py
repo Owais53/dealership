@@ -169,6 +169,9 @@ class SurveyLines(models.Model):
     question_id = fields.Many2one('customer.survey')
 
 
+
+
+
 class GateInwardPass(models.Model):
     _name = 'gate.inward.pass'
     # _rec_name = 'gate_number '
@@ -196,12 +199,20 @@ class GateInwardPass(models.Model):
         self.state = 'out'
         self.date = fields.Datetime.today()
 
+
+
+
+
+
+
     @api.constrains('chassis')
-    def validate_cnic_number(self):
+    def validate_chassis_number(self):
         for record in self:
-            count = self.search_count([('chassis', '=', record.chassis)])
-            if count > 1:
-                raise ValidationError(_('Please enter unique chassis number'))
+         if not record.chassis:
+                  raise ValidationError(_('Please enter chassis number'))
+
+
+
 
     @api.constrains('car_name')
     def validate_cnic_number(self):
@@ -209,6 +220,9 @@ class GateInwardPass(models.Model):
             count = self.search_count([('car_name', '=', record.car_name)])
             if count > 1:
                 raise ValidationError(_('Please enter unique Registration number'))
+
+
+
 
 
 class CarInspection(models.Model):
@@ -417,28 +431,10 @@ class CarInspection(models.Model):
     def Onchange_chassis(self):
         res = {}
         if self.chassis:
-            is_car_sale = self.env['sale.order.line'].search([('chassis', '=', self.chassis.chassis)])
-            is_car_inspected = self.env['car.inspection'].search([('chassis', '=', self.chassis.id)])
-            if is_car_sale:
-                res = {'warning': {
-                    'title': _('Message'),
-                    'message': _('This car was previously sold.')
-                }}
-            if is_car_inspected:
-                res = {'warning': {
-                    'title': _('Message'),
-                    'message': _('This car was previously serviced.')
-                }}
-            if is_car_sale and is_car_inspected:
-                res = {'warning': {
-                    'title': _('Message'),
-                    'message': _('This car was previously serviced and sold.')
-                }}
-
             if self.chassis.partner_name:
                 self.partner = self.chassis.partner_name
-            # if self.chassis.registration_no:
-                self.registration_no = self.chassis.car_name
+            if self.registration_no:
+                self.registration_no = self.registration_no
             if res:
                 return res
 
@@ -488,8 +484,14 @@ class CrateCustomer(models.Model):
         for record in self:
             if self.contact_no:
                 count = self.search_count([('contact_no', '=', self.contact_no)])
+                user_id = self.env['walk.in'].search([('contact_no','=',self.contact_no)])
+                for id in user_id:
+                 user = self.env['walk.in'].search_read([('id','=',id.id)])
+                 break
+                currentuser = self.env.user.name
                 if count > 1:
-                    raise ValidationError(_('This Contact Number has been already registered'))
+                    if currentuser != user[0]['en_id'][1]:
+                     raise ValidationError(_('This Contact Number has been already registered by '+user[0]['en_id'][1]+''))
             else:
                 raise ValidationError(_('This Contact Number is required'))
 
