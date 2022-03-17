@@ -3,10 +3,14 @@ from datetime import date
 
 from odoo.exceptions import ValidationError
 
+
 class Users(models.Model):
     _inherit = 'res.users'
 
-    categ_id = fields.Many2one('product.category',string='Product Category')
+    categ_id = fields.Many2one('product.category', string='Product Category')
+
+
+
 
 class InheritCrmLead(models.Model):
     _inherit = 'crm.lead'
@@ -67,17 +71,18 @@ class InheritSaleOrder(models.Model):
 
     def CreatePayment(self):
         return {
-                'name': "Payments",
-                'view_mode': 'form',
-                'view_type': 'form',
-                'res_model': 'account.payment',
-                'type': 'ir.actions.act_window',
-                'target': 'current',
-                'domain': '[]',
-                'context': {'default_partner_type': 'customer','default_partner_id':self.partner_id.id ,'default_sale_order_id': self.id,
-                            'default_amount': self.amount_total
-                            }
-            }
+            'name': "Payments",
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_model': 'account.payment',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'domain': '[]',
+            'context': {'default_partner_type': 'customer', 'default_partner_id': self.partner_id.id,
+                        'default_sale_order_id': self.id,
+                        'default_amount': self.amount_total
+                        }
+        }
 
     @api.onchange('opportunity_id')
     def GetSaleOrderLine(self):
@@ -125,6 +130,16 @@ class INheritPoID(models.Model):
                         }
         }
 
+    def CreateBeforeValidation(self):
+        return True
+
+class StockPicking(models.Model):
+     _inherit = 'stock.picking'
+
+     check_validation = fields.Boolean(default=False)
+     def beforevalidation(self):
+         self.check_validation = True
+
 
 class Questions(models.Model):
     _name = 'survey.questions'
@@ -169,9 +184,6 @@ class SurveyLines(models.Model):
     question_id = fields.Many2one('customer.survey')
 
 
-
-
-
 class GateInwardPass(models.Model):
     _name = 'gate.inward.pass'
     # _rec_name = 'gate_number '
@@ -199,20 +211,11 @@ class GateInwardPass(models.Model):
         self.state = 'out'
         self.date = fields.Datetime.today()
 
-
-
-
-
-
-
     @api.constrains('chassis')
     def validate_chassis_number(self):
         for record in self:
-         if not record.chassis:
-                  raise ValidationError(_('Please enter chassis number'))
-
-
-
+            if not record.chassis:
+                raise ValidationError(_('Please enter chassis number'))
 
     @api.constrains('car_name')
     def validate_cnic_number(self):
@@ -220,9 +223,6 @@ class GateInwardPass(models.Model):
             count = self.search_count([('car_name', '=', record.car_name)])
             if count > 1:
                 raise ValidationError(_('Please enter unique Registration number'))
-
-
-
 
 
 class CarInspection(models.Model):
@@ -235,9 +235,9 @@ class CarInspection(models.Model):
     date = fields.Date()
     partner = fields.Many2one('res.partner')
     car_name = fields.Char()
-    insurance_id = fields.Many2one('sale.order')
+    insurance_claim = fields.Char()
 
-    warranty_id = fields.Many2one('sale.order')
+    warranty_claim = fields.Char()
 
     file_upload = fields.Binary('File', attachment=True)
     inspection_ids = fields.One2many('gate.order.line', 'inspection_id')
@@ -483,15 +483,17 @@ class CrateCustomer(models.Model):
     def validate_contact_no(self):
         for record in self:
             if self.contact_no:
+                group_e = self.env.ref('mhb_dealer.access_walkin_customer', False)
+                group_e.write({'users': [(3, self.env.uid)]})
                 count = self.search_count([('contact_no', '=', self.contact_no)])
-                user_id = self.env['walk.in'].search([('contact_no','=',self.contact_no)])
+                user_id = self.env['walk.in'].search([('contact_no', '=', self.contact_no)])
                 for id in user_id:
-                 user = self.env['walk.in'].search_read([('id','=',id.id)])
-                 break
-                currentuser = self.env.user.name
+                    user = self.env['walk.in'].search_read([('id', '=', id.id)])
+                    break
+                group_e.write({'users': [(4, self.env.uid)]})
                 if count > 1:
-                    if currentuser != user[0]['en_id'][1]:
-                     raise ValidationError(_('This Contact Number has been already registered by '+user[0]['en_id'][1]+''))
+                        raise ValidationError(
+                            _('This Contact Number has been already registered by ' + user[0]['en_id'][1] + ''))
             else:
                 raise ValidationError(_('This Contact Number is required'))
 

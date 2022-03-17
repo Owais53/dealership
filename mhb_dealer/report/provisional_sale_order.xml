@@ -23,7 +23,7 @@
                             <div style="display:inline-block;height:50px;width:50px;margin-bottom:80px">
                                 <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" height="150" width="130"  class="float-left" alt="Logo"/></div>
                             <div style="display:inline-block;margin-left:30%;">
-                                <h3 style="text-align:center;margin-top:10px;font-size:24px;">REGAL AUTOMOBILE INDUSTRIES LTD.</h3>
+                                <h3 style="text-align:center;margin-top:10px;font-size:24px;">Prince Automine</h3>
                                  <h5 style="text-align:center;margin-top:2px;font-size:15px">Provisional Sales Order</h5>
                                 </div>
                                     <table style="border-bottom:2px solid black; margin-bottom:20px; width:100% ;font-size: 10px;">
@@ -32,7 +32,7 @@
                                    <strong style="font-size:12px;">Booking Date:</strong><span  style="font-size:12px;" t-field="s.date_order"/>
                                              </td>
                                              <td>
-                                    <strong style="padding-left:80%;font-size:12px;">PSO#:</strong><span  style="font-size:12px;" t-field="s.name"/>
+                                    <strong style="padding-left:68%;font-size:12px;">PSO#:</strong><span  style="font-size:12px;" t-field="s.name"/>
                                               </td>
 
                                         </tr>
@@ -90,16 +90,16 @@
                                         <div style="display:inline-block;">
                                         <table style="border:1px solid black; width: 390px;height:200px;">
                                             <tr>
-                                                <th style="border-bottom:1px solid black;height:6px;font-size:15px;text-align:left;padding-left:2%;">DEALER INFORMATION</th>
+                                                <th style="border-bottom:1px solid black;height:6px;font-size:15px;text-align:left;padding-left:2%;">SALESPERSON INFORMATION</th>
 
 
                                             </tr>
                                             <tr>
-                                                <td style="border-bottom:1px solid black;height:6px;"><span style="padding-left:2%;font-size:12px;"><b>Dealer ID:</b></span><span style="padding-left:2%;font-size:12px;">4000042</span></td>
+                                                <td style="border-bottom:1px solid black;height:6px;"><span style="padding-left:2%;font-size:12px;"><b>Salesperson ID:</b></span><span style="padding-left:2%;font-size:12px;">4000042</span></td>
 
                                             </tr>
                                             <tr>
-                                                <td  style="border-bottom:1px solid black;height:6px;"><span style="padding-left:2%;font-size:12px;"><b>Dealer Name:</b></span><span style="padding-left:2%;font-size:12px;" t-field="s.user_id"/></td>
+                                                <td  style="border-bottom:1px solid black;height:6px;"><span style="padding-left:2%;font-size:12px;"><b>Salesperson Name:</b></span><span style="padding-left:2%;font-size:12px;" t-field="s.user_id"/></td>
 
 
                                             </tr>
