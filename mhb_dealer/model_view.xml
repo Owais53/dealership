@@ -446,6 +446,27 @@
 
 
                             </group>
+                            <page string="Insurance Claim">
+                                <field name='insurance_ids' string="Insurance ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                             </field>
+                         </page>
+                         <page string="warrenty Claim">
+                                <field name='warrenty_ids' string="Warrenty ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                             </field>
+
+                         </page>
 
                         </page>
                              <page string="Insurance Claim">
