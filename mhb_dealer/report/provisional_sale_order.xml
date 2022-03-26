@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="mhb_dealer.provisional_sale_order_template">
+         <t t-call="web.html_container">
+<!--            <t t-call="web.external_layout">-->
+                <t t-foreach="docs" t-as="s">
+                    <div class="page">
+                        <div class="container">
+
+                            <style>
+
+                                        * {
+                                          box-sizing: border-box;
+                                        }
+
+
+
+                            </style>
+<!--                             <table width="100%" style="border:1px solid black">-->
+<!--                                <tr>-->
+                            <div style="display:inline-block;height:50px;width:50px;margin-bottom:80px">
+                                <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" height="150" width="130"  class="float-left" alt="Logo"/></div>
+                            <div style="display:inline-block;margin-left:30%;">
+                                <h3 style="text-align:center;margin-top:10px;font-size:24px;">Prince Automine</h3>
+                                 <h5 style="text-align:center;margin-top:2px;font-size:15px">Provisional Sales Order</h5>
+                                </div>
+                                    <table style="border-bottom:2px solid black; margin-bottom:20px; width:100% ;font-size: 10px;">
+                                        <tr>
+                                            <td>
+                                   <strong style="font-size:12px;">Booking Date:</strong><span  style="font-size:12px;" t-field="s.date_order"/>
+                                             </td>
+                                             <td>
+                                    <strong style="padding-left:68%;font-size:12px;">PSO#:</strong><span  style="font-size:12px;" t-field="s.name"/>
+                                              </td>
+
+                                        </tr>
+                                    </table>
+<!--                           CUSTOMER INFORMATION TABLE-->
+
+                                        <div style="display:inline-block;">
+                                        <table style="border:1px solid black; width: 540px;height:200px;">
+                                            <tr>
+                                                <th style="border-bottom:1px solid black;height:10px;font-size:15px;text-align:left;padding-left:2%;">CUSTOMER INFORMATION</th>
+
+
+                                            </tr>
+
+                                            <tr>
+                                                <td  style="border-bottom:1px solid black;height:10px;"> <span style="padding-left:2%;font-size:12px;"><b>Customer Name: </b></span><span style="font-size:12px;" t-field="s.partner_id"/></td>
+
+
+                                            </tr>
+                                          <tr>
+                                              <td style="border-bottom:1px solid black;height:10px;"><span style="padding-left:2%;font-size:12px;"><b style="font-weight: bold;">Cinc: </b></span><span style="font-size:12px;" t-field="s.partner_id.cnic"/></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom:1px solid black;height:10px;"><span style="padding-left:2%;font-size:12px;"><b>Father/Husband Name: </b></span><span  style="font-size:12px;" t-field="s.partner_id.f_name"/></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom:1px solid black;height:10px;"><span style="padding-left:2%;font-size:12px;"><b>TNT#: </b></span><span  style="font-size:12px;" t-field="s.partner_id.vat"/>
+                                                    <span style="padding-left:2%;font-size:12px;"> <b>STRN#: </b></span><span  style="font-size:12px;" t-field="s.partner_id.tax_status"/>
+                                                </td>
+
+
+<!--                                          <b>STRN#: </b><span t-field="s.partner_id.tax_status"/>-->
+
+
+                                            </tr>
+                                            <tr>
+                                                <td style="height:30px;">
+                                                    <span style="padding-left:2%;font-size:12px;"><b>Address: </b></span><span  style="font-size:12px;" t-field="s.partner_id.street"/>
+                                                    <span style="padding-left:2%;font-size:12px;"><b>City: </b></span><span style="font-size:12px;" t-field="s.partner_id.city"/>
+                                                    <span style="padding-left:2%;font-size:12px;"><b>Province: </b></span><span style="font-size:12px;" t-field="s.partner_id.state_id"/>
+                                                    <span style="padding-left:2%;font-size:12px;"><b>Tel.No: </b></span><span style="font-size:12px;" t-field="s.partner_id.phone"/>
+                                                    <span style="padding-left:2%;font-size:12px;"><b>Cell No: </b></span> <span style="font-size:12px;" t-field="s.partner_id.mobile"/>
+                                                    <span style="padding-left:2%;font-size:12px;"><b>Email: </b></span> <span  style="font-size:12px;" t-field="s.partner_id.email"/>
+
+                                      </td>
+
+
+                                            </tr>
+                                        </table>
+                                          </div>
+<!--                            DEALER INFORMATION-->
+
+                                        <div style="display:inline-block;">
+                                        <table style="border:1px solid black; width: 390px;height:200px;">
+                                            <tr>
+                                                <th style="border-bottom:1px solid black;height:6px;font-size:15px;text-align:left;padding-left:2%;">SALESPERSON INFORMATION</th>
+
+
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom:1px solid black;height:6px;"><span style="padding-left:2%;font-size:12px;"><b>Salesperson ID:</b></span><span style="padding-left:2%;font-size:12px;">4000042</span></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td  style="border-bottom:1px solid black;height:6px;"><span style="padding-left:2%;font-size:12px;"><b>Salesperson Name:</b></span><span style="padding-left:2%;font-size:12px;" t-field="s.user_id"/></td>
+
+
+                                            </tr>
+                                          <tr>
+                                              <td style="height:30px;"><span style="padding-left:2%;font-size:12px;"><b>Address:</b></span><span style="padding-left:2%;font-size:12px;" t-field="s.team_id"/></td>
+
+                                            </tr>
+                                        </table>
+                                           </div>
+<!--                            pso booking type-->
+                                        <table style="border:1px solid black; margin-top:5px; padding-top:15px;padding-left:2px;width:100%;height:50px ;">
+                                            <tr>
+                                                <td style="padding: 10px;font-size:15px;">
+                                       <strong>PSO Booking Type:</strong><span t-field="s.payment_term_id"/>
+                                                 </td>
+
+
+                                            </tr>
+                                        </table>
+
+<!--                                vehicle information-->
+                            <table style="border:1px solid black;width:100%;height:100px;margin-top:5px;">
+                                            <tr>
+                                                <th class="text-left" style="border-bottom:1px solid black;padding: 10px;font-size:15px;text-align:left;">VEHICLE INFORMATION</th>
+
+
+                                            </tr>
+                                            <tr>
+                                              <td style="border-bottom:1px solid black;padding-top:5px;"> <span style="padding-left:2%;font-size:12px;">Vehicle Name</span><span style="padding-left:350px;font-size:12px;">Model</span> <span style="padding-left:5%;font-size:12px;">Engine #</span><span style="padding-left:5%;font-size:12px;">Chasis#</span><span style="padding-left:5%;font-size:12px;">Color Preference</span><span style="padding-left:5%;font-size:12px;">Unit Price</span></td>
+
+                                            </tr>
+                                            <tr t-foreach="docs.order_line" t-as="l">
+                                                <td  style="border-bottom:1px solid black;padding-top:5px;"> <span style="padding-left:2%;font-size:12px;" t-field="l.product_id"/><span style="padding-left:300px;font-size:12px;" t-field="l.model"/> <span style="padding-left:5%;font-size:12px;" t-field="l.engine"/><span style="padding-left:6%;font-size:12px;" t-field="l.chassis"/><span style="padding-left:6%;font-size:12px;" t-field="l.vehicle_two"/><span style="padding-left:6%;font-size:12px;" t-field="l.price_unit"/></td>
+
+                                            </tr>
+                                           <tr>
+                                                <td ><span style="padding-left:80%;font-size:12px;padding-top:5px;">Grand Total:</span><span style="font-size:12px;" t-field="s.amount_total"/></td>
+
+                                            </tr>
+                             </table>
+
+<!--                           payment & booking information-->
+                            <table style="width: 100%;margin-top:5px;border-top: 1px solid black;  border-right:1px solid black; border-left: 1px solid black;"  cellpadding="17">
+                                    <tbody>
+                                    <tr>
+                                    <th style="padding: 10px;font-size:15px;text-align:left;">PAYMENT &amp; BOOKING INFORMATION</th>
+                                    </tr>
+                                    </tbody>
+                            </table>
+
+                            <table style="width: 100%;border:1px solid black" cellpadding="2">
+
+                                        <tr>
+                                        <th style="width: 5%;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">S#</th>
+                                        <th style="width: 18%;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">Payment Type</th>
+                                        <th style="width: 18%;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">Deposit bank</th>
+                                        <th style="width: 12%;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">Deposit Slip</th>
+                                        <th style="width: 14;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">Payorder/Cheque No.</th>
+                                         <th style="width: 14;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">Total Payment</th>
+                                        <th style="width: 14;font-size:12px;border-bottom:1px solid black;border-right:1px solid black;text-align:left;">Paid Payment</th>
+                                        <th style="width: 14;font-size:12px;border-bottom:1px solid black;text-align:left;">Balance Payment</th>
+                                        </tr>
+                                        <tr  t-foreach="docs.invoice_ids" t-as="l">
+                                        <td style="width: 5%;font-size:12px;border-right:1px solid black;">1</td>
+                                        <td style="width: 18%;font-size:12px;border-right:1px solid black;"><span style="font-size:12px;" t-field="s.payment_term_id"/></td>
+                                        <td style="width: 29%;font-size:12px;border-right:1px solid black;"><span style="font-size:12px;" t-field="l.journal_id.name"/></td>
+                                        <td style="width: 14%;font-size:12px;border-right:1px solid black;"><span style="font-size:12px;" t-field="l.name"/></td>
+<!--                                        <td style="width: 14%;font-size:12px;border-right:1px solid black;"><span style="font-size:12px;" t-field="s.partner_id.payment_reference"/></td>-->
+                                        <td style="width: 14%;font-size:12px;border-right:1px solid black;"><span style="font-size:12px;" t-field="s.amount_total"/></td>
+                                        <td style="width: 14%;font-size:12px;border-right:1px solid black;"><span style="font-size:12px;" t-field="l.amount_total"/></td>
+<!--                                        <td style="width: 14%;font-size:12px;border-bottom:1px solid black;"><span style="font-size:12px;" t-field="s.partner_id.amount_residual"/></td>-->
+                                          <td style="width: 14%;font-size:12px;"><span style="font-size:12px;"  t-field="l.amount_residual"/></td>
+
+                                        </tr>
+
+                            </table>
+                             <table style="width: 100%; height: 111px;border:1px solid black;margin-top:5px;"  cellpadding="2">
+                                    <tbody>
+                                    <tr style="height: 18px;">
+                                    <th style="width: 725px; height: 18px;padding:10px;text-align:left;border-bottom:1px solid black;font-size:15px;">TERMS AND CONDITIONS</th>
+                                    </tr>
+                                    <tr style="height: 55px;">
+                                    <td style="width: 725px; height: 55px; padding: 5px;"><p style="padding:5px;text-align:left;font-size:11px;">I HEREBY DECLARE THAT I HAVE READ AND UNDERSTOOD ALL THE TERMS AND CONDITIONS CONTAIN ON THE REVERSE OF THIS FORM AND PUT MY SIGNATURE AS AN ACKNOWLEDGEMENT OF ACCEPTANCE OF SUCH CONDITIONS.</p></td>
+                                    </tr>
+                                    </tbody>
+                             </table>
+                            <div style="display:inline-block;margin-top:5px;">
+                            <table style="width: 400px; height: 155px;border: 1px solid black;"  cellpadding="2">
+                                <tbody>
+                                <tr style="height: 76px;">
+                                <th style="height: 76px; width: 355px;padding-bottom:130px;text-align:center;font-size:15px;">APPLICANT SIGNATURE</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <div style="display:inline-block;margin-top:5px;">
+                            <table style="width: 400px; height: 155px;border: 1px solid black;border: 1px solid black;margin-left:34%;"  cellpadding="2">
+                                <tbody>
+                                <tr style="height: 76px;">
+                                <th style="height: 76px; width: 355px;padding-bottom:130px;text-align:center;font-size:15px;">APPLICANT THUMB IMPRESSION</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+
+                        </div>
+                       <br></br>
+                       <br></br>
+                       <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+
+
+
+
+
+
+                        <p style="font-size:14px;text-align:center;"><b>TERMS &amp; CONDITIONS</b></p>
+                        <p style="font-size:10px;">1. This document is issued by the authorized dealer of Regal Automobiles Industries Ltd. The term 'COMPANY' wherever used mean Regal Automobiles Industries Ltd. The term 'APPLICANT' wherever used means a person who has applied for booking of the vehicle. The term 'VEHICLE' means and includes the optional items, accessories and other articles offered/supplied with the vehicle at the time of delivery.</p>
+                        <p style="font-size:10px; margin-top: -8px;">2. This provisional sale order is subject to confirmation by Regal Automobiles Industries Ltd</p>
+                        <p style="font-size:10px; margin-top: -8px;">3. The Company reserves the right to alter the design, Construction specification, color, price and delivery schedule of the vehicle without notice at its sole discretion. RAIL also reserve the right to transfer this order to other authorized Dealer without assigning any reason without prior notice and the vehicle may be supplied with or without such alteration and change through any Authorized Dealer. Subject to change /addition/deletion the Applicant may select any three in order of priority from available colors. </p>
+                        <p style="font-size:10px; margin-top: -8px;">4. (1) The provisional price(s) Indicated /advertised are tentative retail prices Inclusive of sale tax (excluding other levies, Govt and local taxes) and maybe change without any notice.</p>
+                        <p style="font-size:10px; margin-top: -8px;">(II) The price shall be applicable as prevalent or fixed by the Company at the time of delivery.</p>
+                        <p style="font-size:10px; margin-top: -8px;">(III) Payment will be accepted in the form of pay order / demand draft only In the name of Regal Automobiles Industries Ltd. with A/c Customer Name.</p>
+                        <p style="font-size:10px; margin-top: -8px;">(IV) The difference of price, if any, between the price at the time of booking and delivery shall be payable at the time of delivery of the vehicle. </p>
+                        <p style="font-size:10px; margin-top: -8px;">(V) The vehicle shall not be delivered to the Applicant unless and until the Company receives the entire payment of the price of the Vehicle. In the event that the Vehicle is ready to be delivered and the applicant delays the payment of the full price to the Company, or does not take delivery of the Vehicle . The Company will hold the vehicle for fifteen (I5) days,after the delivery month of the Vehicle and thereafter will deal with the Vehicle in the manner deemed fit by the Company.</p>
+                        <p style="font-size:10px; margin-top: -8px;">(VI) If the Applicant wishes, at any time before the delivery of the vehicle, to cancel the booking under the PSO, the applicant may do so by making a written application (accompanied d by the Applicant's copy of the PSO in original) to the concerned Authorized Dealer, who will forward the same to the Company. The Company shall refund the amount paid by the Applicant less an administrative charge which is equivalent to 2% of the total price of the vehicle applicable / prevailing at the time of booking which net amount shall be paid to the Applicant through the concerned Authorized Dealer by mean of crossed cheque in the name of Applicant within thirty (30) days of date of receipt by the company of the Applicant's written cancellation of the P 5O. If the Applicant wishes to cancel their booking under the P5O on the account of increase in price or due to delays in delivery of the vehicle, the Company shall refund the amount paid by the Applicant without deducting the applicable administrative charges. The company reserves the right to refuse any application for cancelation which is not accompanied by the Applicant's copy of the PSO in original.</p>
+                        <p style="font-size:10px; margin-top: -8px;">5. Authorized Dealer or the Company shall not be responsible for any delays, in the delivery of the vehicle accruing due to acts of God or enemy, change In Government Policies, Labor strikes or civil commotion, injunctions granted by courts of law, force major or for any other reasons beyond the control of either Authorized Dealer or the Company</p>
+                        <p style="font-size:10px; margin-top: -8px;">6. The information provided by the Applicant as appearing over leaf shall be considered correct and sufficient for purpose of correspondence /communication and any notices/letters sent at the given address shall be deemed to have been delivered In due courses of post Non -receipt of letters, correspondence/communications shall not be considered an excuse for delays in payment. Incomplete form may be rejected at the sole desecration of the Authorized Dealers/Company. No request for change of name shall be entertained</p>
+                        <p style="font-size:10px; margin-top: -8px;">7. The Company's Inspection at factory will be final for all purposes and they will be indemnified and will be deemed to have always been so indemnified against all damages. </p>
+                        <p style="font-size:10px; margin-top: -8px;">8. The Company reserves the right to change and alter some or all the terms and conditions of this provisional sales order. Furthermore the Company's interpretation of all the terms and condition shell be final and binding on all parties.</p>
+                        <p style="font-size:10px; margin-top: -8px;">9. In case of any dispute arising from, in connection with or in relation to the instant Provisional Sales Order or regarding any Issue hereafter between the Applicant/Customer and Authorized Dealer and/or the Company, the dispute shall be resolved inter se parties through amicable settlement In case the dispute cannot be resolved amicably with thirty (30) days. The matter shall be referred to the Arbitrator Le. Managing Director, Regal Automobiles Industries Limited (RAIL) whose decision shall be final and binding on all parties to the dispute in all respects The parties hereto specifically agree that in case of dispute only the Courts at Lahore or Karachi shall have jurisdiction in respect to the controversy between the parties.</p>
+                        <p style="font-size:10px; margin-top: -8px;">10. Delay in taking delivery on account of wrong/incomplete address recorded with the company or change of address not intimated in the Company in time or due to any other reason whatsoever will be entirely at the Applicant's risk and responsibility.</p>
+                        <p style="font-size:10px; margin-top: -8px;">11. Separate Provisional Sales Order form is required for each vehicle ordered.</p>
+                        <p style="font-size:10px; margin-top: -8px;">12. The Applicant agrees and undertakes to pay all taxes, fees and other charges etc. Or any other levy or whatsoever natures as many be levied from time to time by any Government Authority, local body or other organization or agency at the time of delivery of the vehicle or otherwise.</p>
+                        <p style="font-size:10px; margin-top: -8px;">13. The Applicant hereby understands that Authorized Dealers are not acting as agents or representatives of or for the company. Except with the consent of the Company nothing contained herein or contained in further /subsequent correspondence/communication, undertaking, commitment, promise, covenants' or representation between Authorized Dealer and the Applicant shall not bind the Company or be construed to have binding effect on the rights and Interest of the Company.</p>
+                        <p style="font-size:10px; margin-top: -8px;">14. I hereby confirm that I will only liable to pay the Company, Its Sales Invoice Price and the applicable Government and local levies as prevailing at the time of delivery.</p>
+                        <p style="font-size:10px; margin-top: -8px;">I have read and agreed the above Terms and Conditions.</p>
+                        <br></br>
+                        <br></br>
+
+
+                        <div style="display:inline-block;margin-top:5px;">
+                            <table style="width: 400px; height: 20px;border-top: 1px solid black;"  cellpadding="2">
+                                <tbody>
+                                <tr style="height: 16px;">
+                                <th style="height: 16px; width: 355px;padding-bottom:130px;text-align:center;font-size:15px;">APPLICANT SIGNATURE</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <div style="display:inline-block;margin-top:5px;">
+                            <table style="width: 400px; height: 20px;border-top: 1px solid black;margin-left:23%;"  cellpadding="2">
+                                <tbody>
+                                <tr style="height: 16px;">
+                                <th style="height: 16px; width: 355px;padding-bottom:130px;text-align:center;font-size:15px;">DEALER SIGNATURE THUMB IMPRESSION</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+
+
+                    </div>
+                </t>
+<!--            </t>-->
+         </t>
+    </template>
+</odoo>

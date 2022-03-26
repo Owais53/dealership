@@ -1,0 +1,659 @@
+<odoo>
+    <data>
+        <record id="view_walk_in_form" model="ir.ui.view">
+            <field name="name">walk.in.inherit.new</field>
+            <field name="model">walk.in</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="cnic"/>
+                        <field name="contact_no"/>
+                        <field name="product_id" widget="many2many_tags"/>
+                        <field name="description"/>
+                         <field name="en_id"  string="Entertained By" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_walk_in_tree" model="ir.ui.view">
+            <field name="name">walk.in.inherit.new</field>
+            <field name="model">walk.in</field>
+            <field name="arch" type="xml">
+                <tree>
+                        <field name="name"/>
+                        <field name="cnic"/>
+                        <field name="contact_no"/>
+                        <field name="product_id"/>
+                        <field name="description"/>
+                        <field name="en_id"  string="Entertained By"/>
+                </tree>
+            </field>
+        </record>
+         <record id="view_users_inherit_new" model="ir.ui.view">
+            <field name="name">res.users.inherit.new</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']/group/field[@name='partner_id']" position="after">
+                    <field name="categ_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_deliver_product_tree" model="ir.ui.view">
+            <field name="name">deliver.product.inherit.new</field>
+            <field name="model">deliver.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="vehicle_number"/>
+                    <field name="gate_number"/>
+                    <field name="po_id"/>
+                    <field name="sale_id"/>
+                    <field name="in_date"/>
+                    <field name="out_date"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_deliver_product_form" model="ir.ui.view">
+            <field name="name">deliver.product.inherit.new</field>
+            <field name="model">deliver.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Received" class="oe_stat_button" type="object" name="SetReceived" attrs="{'invisible': [('state', '!=','Draft')]}"/>
+                        <button string="Delivered" class="oe_stat_button" type="object" name="SetDelivered" attrs="{'invisible': [('state', '!=','Received')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group string="Receiving" attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                            <group attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                                <field name="product_id" attrs="{'readonly': [('state', '!=', 'Draft')]}" force_save="1"/>
+                                <field name="vehicle_number" attrs="{'readonly': [('state', '!=', 'Draft')]}" force_save="1"/>
+                                <field name="employee_id" attrs="{'readonly': [('state', '!=', 'Draft')]}" force_save="1"/>
+                            </group>
+                            <group attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                                <field name="po_id" attrs="{'readonly': [('state', '!=', 'Draft')]}" force_save="1"/>
+                                <field name="gate_number" attrs="{'readonly': [('state', '!=', 'Draft')]}" force_save="1"/>
+                                <field name="in_date" attrs="{'readonly': [('state', '!=', 'Draft')]}" force_save="1"/>
+
+                            </group>
+                        </group>
+                        <group string="Delivery Of Car" attrs="{'invisible': [('state', 'in',['Draft'])],'readonly':[('state','in',['Delivered'])]}">
+                            <group>
+                                <field name="sale_id" attrs="{'readonly': [('state','in',['Delivered'])]}" force_save="1"/>
+                                <field name="out_date" attrs="{'readonly': [('state','in',['Delivered'])]}" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" attrs="{'readonly':[('state','in',['Delivered'])]}" force_save="1"/>
+                                <field name="out_gate" attrs="{'readonly':[('state','in',['Delivered'])]}" force_save="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_product_inherit_new" model="ir.ui.view">
+            <field name="name">product.product.inherit.new</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='purchase_ok']" position="after">
+                    <field name="car" string="Is Car"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="model" string="Model" />
+                    <field name="car_type" string="Type" />
+                    <field name="vehicle_two" string="Vehicle(2nd Choice)" />
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_purchase_Order_inherit_new" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.new</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="inside">
+                    <button string="Create Goods Notes" class="oe_stat_button" type="object" name="CreatePass" attrs="{'invisible': [('state', '!=','purchase')]}"/>
+                </xpath>
+                 <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                  <field name="chassis" readonly="0"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="sale_id" readonly="1"/>
+                </xpath>
+
+
+            </field>
+        </record>
+        <record id="view_stock_picking_inherit_new" model="ir.ui.view">
+            <field name="name">stocking.picking.inherit.new</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="check_validation" invisible="1"/>
+                </xpath>
+                <xpath expr="//form/header" position="inside">
+                    <button string="Approve" class="oe_stat_button" type="object" name="beforevalidation" attrs="{'invisible': [('check_validation', '=', True)]}"/>
+                </xpath>
+
+                <xpath expr="//form/header/button[@name='button_validate']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': [('check_validation', '=', False)]}
+                    </attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_sale_order_inherit_new" model="ir.ui.view">
+            <field name="name">sale.order.inherit.new</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="inside">
+                    <field name="check_po" invisible="1"/>
+                    <button string="Create Purchase Order" class="oe_stat_button" type="object" name="CreatePurchaseOrder" attrs="{'invisible': ['|',('state', '!=','sale'),('check_po','!=',False)]}"/>
+                    <button string="Create Payment" class="oe_stat_button" type="object" name="CreatePayment" attrs="{'invisible': [('state', '!=','sale')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="delivery_date" string="Delivery Date"/>
+                    <field name="account_type" string="Account Type" />
+                    <field name="po_id" readonly="1"/>
+<!--                    <field name="name_seq2" readonly="1"  force_save="1"/>-->
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="delivery_date" string="Delivery Date"/>
+                    <field name="account_type" string="Account Type"/>
+                    <field name="name_seq" readonly="1"/>
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+
+                    <field name="chassis" string="Chassis" />
+                    <field name="engine" string="Engine" />
+                    <field name="car_type" string="Type" />
+                    <field name="vehicle_categ" string="Category" />
+                    <field name="vehicle_two" string="2nd colour choice" />
+                    <field name="model" string="Model" />
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="name">Provisional Sales Order</field>
+        </record>
+
+        <record id="view_res_partner_inherit_new" model="ir.ui.view">
+            <field name="name">res.partner.inherit.new</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <group>
+                        <field name="f_name" string="Father/Husband Name"/>
+                        <field name="cnic" string="CNIC"/>
+                        <field name="tax_status" string="Tax Status"/>
+                    </group>
+                    <group>
+                        <field name="institution" string="Instituion"/>
+                         <field name="file_upload"  filename="name" string="Attachment" />
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                   <attribute name="string">NTRN/STRN</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_crm_lead_inherit_new" model="ir.ui.view">
+            <field name="name">crm.lead.inherit.new</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="cnic"/>
+                    <field name="product_id" widget="many2many_tags" string="Product"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_walk_in">
+            <field name="name">Customers</field>
+            <field name="res_model">walk.in</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_good_note">
+            <field name="name">Gate Pass</field>
+            <field name="res_model">deliver.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_gate_pass">
+            <field name="name">Gate Pass</field>
+            <field name="res_model">gate.inward.pass</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+
+        <menuitem id="menugatepass" action="action_good_note" name="Goods Note" sequence="45"/>
+        <menuitem id="menuwalkin" action="action_walk_in" name="WalkIn Customer" sequence="45"/>
+        <menuitem id="menu_gate_inward_pass" action="action_gate_pass" name="Gate Pass" sequence="46"/>
+
+
+        <!--        <record id="sale_crm.crm_case_form_view_oppor" model="ir.ui.view">-->
+        <!--            <field name="name">crm.lead.oppor.inherited.crm</field>-->
+        <!--            <field name="model">crm.lead</field>-->
+        <!--            <field name="inherit_id" ref="crm.crm_lead_view_form"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">-->
+        <!--                    <field name="sale_check" invisible="1"/>-->
+        <!--                    <button string="New Sale Order" name="action_sale_quotations_new" type="object" class="oe_highlight"-->
+        <!--                            attrs="{'invisible': [('sale_check', '=', True)]}"/>-->
+        <!--                </xpath>-->
+        <!--                <button name="action_schedule_meeting" position="after">-->
+        <!--                    <button class="oe_stat_button" type="object"-->
+        <!--                            name="action_view_sale_quotation" icon="fa-pencil-square-o" attrs="{'invisible': [('type', '=', 'lead')]}">-->
+        <!--                        <field name="quotation_count" widget="statinfo" string="Quotations"/>-->
+        <!--                    </button>-->
+        <!--                    <button class="oe_stat_button" type="object" attrs="{'invisible': ['|', ('sale_order_count', '=', 0), ('type', '=', 'lead')]}"-->
+        <!--                            name="action_view_sale_order" icon="fa-usd">-->
+        <!--                        <div class="o_field_widget o_stat_info">-->
+        <!--                            <span class="o_stat_value"><field name="sale_amount_total" widget="monetary" options="{'currency_field': 'company_currency'}"/></span>-->
+        <!--                            <span class="o_stat_text"> Orders</span>-->
+        <!--                            <field name="sale_order_count" invisible="1"/>-->
+        <!--                        </div>-->
+        <!--                    </button>-->
+        <!--                </button>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <record id="view_gate_inward_pass_form" model="ir.ui.view">
+            <field name="name">gate.inward.pass.inherit.new</field>
+            <field name="model">gate.inward.pass</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Gate Inward" class="oe_stat_button" type="object" name="SetIn" attrs="{'invisible': [('state', '!=','Draft')]}"/>
+<!--                        <button string="Gate Outward" class="oe_stat_button" type="object" name="SetOut" attrs="{'invisible': [('state', '!=','in')]}"/>-->
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group string="Gate Inward" attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                            <group attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                                <field name="partner_name" string="Customer Name" required="1" attrs="{'readonly': [('state', '!=', 'Draft')]}" />
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'Draft')]}" string="Date" />
+                            </group>
+                            <group attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                                <field name="chassis"   string ='Chassis'  attrs="{'readonly': [('state', '!=', 'Draft')]}"/>
+                                <field name="gate_number" string="Gate No" attrs="{'readonly': [('state', '!=', 'Draft')]}" />
+                            </group>
+                            <group attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                                <field name="car_name"  string ='Registration Number'  attrs="{'readonly': [('state', '!=', 'Draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="en_id"  string='Entertained By' readonly="1"/>
+                            </group>
+
+
+                        </group>
+
+<!--                        <group string='Product Detail'>-->
+<!--                            <field name='product_line'>-->
+<!--                                <tree editable='bottom'>-->
+<!--                                    <field name='product_id' string='Product'/>-->
+<!--                                    <field name='name' string='Name'/>-->
+<!--                                    <field name='product_uom_qty' string='Qty'/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </group>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_car_inspection_form" model="ir.ui.view">
+            <field name="name">car.inspection.inherit.new</field>
+            <field name="model">car.inspection</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--&lt;!&ndash;                        <button string="Confirmed" class="oe_stat_button" type="object" name="confirmed" attrs="{'invisible': [('state', '!=','Draft')]}"/>&ndash;&gt;-->
+
+<!--                        <button string="Sale Order" class="oe_stat_button" type="object" name="So" attrs="{'invisible': [('state', '!=','confirmed')]}"/>-->
+<!--&lt;!&ndash;                        <button string="In Progress" class="oe_stat_button" type="object" name="inprogress" attrs="{'invisible': [('state', '!=','so')]}"/>&ndash;&gt;-->
+
+<!--                        <button string="Confirmed" class="oe_stat_button" type="object" name="complete" attrs="{'invisible': [('state', '!=','in_progress')]}"/>-->
+<!--                        <field name="state" widget="statusbar"/>-->
+
+                        <button string="Receiving Checklist" class="oe_stat_button" type="object" name="receivingchecklist" attrs="{'invisible': [('state', '!=','Draft')]}"/>
+                        <button string="Sale Order" class="oe_stat_button" type="object" name="So" attrs="{'invisible': [('state', '!=','receiving_checklist')]}"/>
+                        <button string="Return Checklist" class="oe_stat_button" type="object" name="returnchecklist" attrs="{'invisible': [('state', '!=','so')]}"/>
+                        <button string="Gate Out" class="oe_stat_button" type="object" name="complete" />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name_seq" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group string="Inspection Form" attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                            <group attrs="{'readonly': [('state', '!=', 'Draft')]}">
+                                <field name="chassis"/>
+                                <field name="partner" required="1" attrs="{'readonly': [('state', '!=', 'Draft')]}" string="Customer" />
+                                <field name="car_name"/>
+                                <field name="address"/>
+                                <field name="user_id" readonly="1"/>
+                                <field name="mobile"/>
+                                <field name="check_invoicess" invisible="1"/>
+                                <field name="phone"/>
+                                <field name="date" string="Promise Date"  attrs="{'readonly': [('state', '!=', 'Draft')]}"/>
+                                <field name="sale_o" string="Sale Order Reference"/>
+                            </group>
+                            <group>
+                                <field name="registration_no"/>
+<!--                                <field name="chassis" widget="many2one_tags"/>-->
+                                <field name="engine_no"/>
+                                <field name="make"/>
+                                <field name="model"/>
+                                <field name="color"/>
+                                <field name="km"/>
+                                <field name="insurance_claim" string="Insurance Claim"/>
+                                <field name="warranty_claim" string="Warranty Claim"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Receiving Checklist">
+                                <group>
+                                    <group>
+                                        <field name='cassettes_player'/>
+                                        <field name='cd' string="CD"/>
+                                        <field name='cassettes' string="Cassettes"/>
+                                        <field name='cig' string="CIG Lighter" />
+                                        <field name='floor' string="Floor Mats"/>
+                                        <field name='rv' string="R.V Mirror"/>
+                                        <field name='sv' string="S.V Mirror "/>
+                                        <field name='wiper' string="Wiper Blade"/>
+                                        <field name='vin' string="VIN Blade"/>
+                                        <field name="fuel"/>
+                                    </group>
+                                    <group string="Total Jobcard Amount">
+                                        <field name="gst" string="GST Amount"/>
+                                        <field name="total" string="Total Amount(Rs)"/>
+                                        <field name="technical" string="Technical Advisor"/>
+                                        <field name="technician" string="Technician"/>
+                                    </group>
+
+                                    <group>
+                                        <field name='tool' string="Tool Kit" />
+                                        <field name='jack' string="Jack and Handle" />
+                                        <field name='wheel' string="Wheel Spanner"/>
+                                        <field name='spare' string="Spare Wheel"/>
+                                        <field name='monogram' string="Monogram"/>
+                                        <field name='mud' string="Mud Flap"/>
+                                        <field name='top_cover' string="Top Cover"/>
+                                        <field name='original' string="Original"/>
+
+                                    </group>
+
+
+                                </group>
+
+                            </page>
+                            <page string='Product Detail'>
+                                <field name='inspection_ids' string="Inpection ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                            </field>
+                        </page>
+<!--                        <page string="Return Checklist" attrs="{'invisible': ['|',('state','!=','So'),('state','=','Draft')]}">-->
+                        <page string="Return Checklist" attrs="{'invisible': [('state','not in', ('return_checklist','complete'))]}">
+<!--                        <page string="Return Checklist">-->
+                            <group>
+                                <group>
+                                    <field name='cassettes_player1' string="Cassettes Player"/>
+                                    <field name='cd1' string="CD"/>
+                                    <field name='cassettes1' string="Cassettes"/>
+                                    <field name='cig1' string="CIG Lighter" />
+                                    <field name='floor1' string="Floor Mats"/>
+                                    <field name='rv1' string="R.V Mirror"/>
+                                    <field name='sv1' string="S.V Mirror"/>
+                                    <field name='wiper1' string="Wiper Blade"/>
+                                    <field name='vin1' string="VIN Blade"/>
+                                </group>
+                                <group>
+                                    <field name='wheel1' string="Wheel Spanner"/>
+                                    <field name='tool1' string="Tool Kit" />
+                                    <field name='jack1' string="Jack and Handle" />
+                                    <field name='wheel1' string="Wheel Spanner"/>
+                                    <field name='spare1' string="Spare Wheel"/>
+                                    <field name='monogram1' string="Monogram"/>
+                                    <field name='mud1' string="Mud Flap"/>
+                                    <field name='top_cover1' string="Top Cover"/>
+                                    <field name='original1' string="Original"/>
+
+                                </group>
+
+
+                            </group>
+
+                        </page>
+                             <page string="Insurance Claim">
+                                <field name='insurance_ids' string="Insurance ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                             </field>
+                         </page>
+                         <page string="warrenty Claim">
+                                <field name='warrenty_ids' string="Warranty ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='product_id' string='Product'/>
+                                    <field name='name'/>
+                                    <field name='product_uom_qty' string='Qty'/>
+                                </tree>
+                             </field>
+                         </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_gate_inward_pass_tree" model="ir.ui.view">
+            <field name="name">gate.inward.pass.inherit.new</field>
+            <field name="model">gate.inward.pass</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_name" string="Customer Name"/>
+                    <field name="date"  string="Date"/>
+                    <field name="gate_number"  string="Gate #"/>
+                    <field name="chassis"  string="Chassis"/>
+                    <field name="en_id"  string="Enertained By"/>
+                    <field name="state"  string="State"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+          <record id="car_inspection_view_tree" model="ir.ui.view">
+            <field name="name">car.inspection.tree</field>
+            <field name="model">car.inspection</field>
+            <field name="arch" type="xml">
+                <tree  string="Product Items">
+                    <field name="partner"/>
+                    <field name="name_seq"/>
+                    <field name="chassis"/>
+                    <field name="engine_no"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="view_survey_form" model="ir.ui.view">
+            <field name="name">customer.survey.view</field>
+            <field name="model">customer.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Start Survey" class="oe_stat_button" type="object" name="start_survey" attrs="{'invisible': [('state', '!=','draft')]}"/>
+                        <button string="Finished" class="oe_stat_button" type="object" name="done" attrs="{'invisible': [('state', '!=','start')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group string="Customer Survey" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                            <group attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <field name="name" string="Survey Name" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                                <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}" string="Customer" />
+                            </group>
+                            <group attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <field name="survay_date_start" string="Gate No" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                                <field name="survay_date_end" string ='Car No' attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            </group>
+                        </group>
+                        <group string='Questions'>
+                            <field name='survey_q_lines'>
+                                <tree editable='bottom'>
+                                    <field name='question' string='Question'/>
+                                    <field name='answer' string='Answer'/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_survey_questions" model="ir.ui.view">
+            <field name="name">survey.question.view</field>
+            <field name="model">survey.questions</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name='name' string='Question'/>
+                            <field name='is_active' string='Active'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_survey_questions_lines" model="ir.ui.view">
+            <field name="name">survey.question.lines.view</field>
+            <field name="model">survey.question.lines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name='question' string='Question'/>
+                            <field name='answer' string='Answer'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+
+
+
+        <record id="access_product_categ" model="res.groups">
+            <field name="name">Users: Access Product Category</field>
+        </record>
+
+       <record id="show_specific_products" model="ir.rule">
+       <field name="name">User can only see Specific Product Category</field>
+       <field name="model_id" ref="product.model_product_template"/>
+       <field name="groups" eval="[(4, ref('access_product_categ'))]"/>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="True"/>
+       <field name="perm_create" eval="True"/>
+       <field name="perm_unlink" eval="False"/>
+      <field name="domain_force">[('categ_id','=',user.categ_id.id)]</field>
+      </record>
+
+       <record id="access_walkin_customer" model="res.groups">
+            <field name="name">Users: Access WalkIn Customer</field>
+        </record>
+
+       <record id="show_specific_walkin_customer" model="ir.rule">
+       <field name="name">User can only see Specific WalkIn Customer</field>
+       <field name="model_id" ref="model_walk_in"/>
+       <field name="groups" eval="[(4, ref('access_walkin_customer'))]"/>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="True"/>
+       <field name="perm_create" eval="True"/>
+       <field name="perm_unlink" eval="False"/>
+      <field name="domain_force">[('en_id','=',user.id)]</field>
+      </record>
+        <record id="show_specific_walkin_customer_lead" model="ir.rule">
+       <field name="name">User can only see Specific Leads</field>
+       <field name="model_id" ref="model_crm_lead"/>
+       <field name="groups" eval="[(4, ref('access_walkin_customer'))]"/>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="True"/>
+       <field name="perm_create" eval="True"/>
+       <field name="perm_unlink" eval="False"/>
+      <field name="domain_force">[('user_id','=',user.id)]</field>
+      </record>
+
+
+        <record model="ir.actions.act_window" id="action_customer_survey">
+            <field name="name">Customer Survey</field>
+            <field name="res_model">customer.survey</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Action for Question Form -->
+        <record id="action_questions" model="ir.actions.act_window">
+            <field name="name">Question Form</field>
+            <field name="res_model">survey.questions</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_inspection_form" model="ir.actions.act_window">
+            <field name="name">Inspection Form</field>
+            <field name="res_model">car.inspection</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_car_inspection"  name="Car Inspection" sequence="43"/>
+        <menuitem id="inspection_form_menu" name="Inspection Form" action="action_inspection_form" parent="menu_car_inspection"/>
+        <menuitem id="menu_customer_survey"  name="Customer Survey" sequence="44"/>
+        <menuitem id="config_menu" name="Configuration"  parent="menu_customer_survey" sequence="70"/>
+        <menuitem id="survey_from_menu" name="Survey Form" action="action_customer_survey" parent="menu_customer_survey"/>
+        <menuitem id="questions_menu" name="Question" parent="config_menu" sequence="128" action="action_questions"/>
+
+
+    </data>
+</odoo>
