@@ -126,7 +126,10 @@
                 <xpath expr="//field[@name='partner_ref']" position="after">
                     <field name="sale_id" readonly="1"/>
                 </xpath>
+                  <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                  <field name="colour"/>
 
+                 </xpath>
 
             </field>
         </record>
@@ -183,6 +186,11 @@
                     <field name="model" string="Model" />
 
                 </xpath>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                  <field name="colour"/>
+
+                 </xpath>
 
 
             </field>
@@ -580,7 +588,18 @@
                 </form>
             </field>
         </record>
-
+         <!--        colour form-->
+        <record id="color_car" model="ir.ui.view">
+            <field name="name">colour.car</field>
+            <field name="model">colour.colour</field>
+            <field name="arch" type="xml">
+                <form>
+                     <group>
+                    <field name="colour" string="Colour"/>
+                     </group>
+                </form>
+            </field>
+        </record>
 
 
 
@@ -646,6 +665,12 @@
             <field name="res_model">car.inspection</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <!--   colour action-->
+         <record id="action_colour_form" model="ir.actions.act_window">
+            <field name="name">colour car</field>
+            <field name="res_model">colour.colour</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
         <menuitem id="menu_car_inspection"  name="Car Inspection" sequence="43"/>
         <menuitem id="inspection_form_menu" name="Inspection Form" action="action_inspection_form" parent="menu_car_inspection"/>
@@ -653,6 +678,7 @@
         <menuitem id="config_menu" name="Configuration"  parent="menu_customer_survey" sequence="70"/>
         <menuitem id="survey_from_menu" name="Survey Form" action="action_customer_survey" parent="menu_customer_survey"/>
         <menuitem id="questions_menu" name="Question" parent="config_menu" sequence="128" action="action_questions"/>
+        <menuitem id="colour_car_form" name="Colour"  sequence="2" action="action_colour_form"/>
 
 
     </data>
