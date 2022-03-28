@@ -18,4 +18,12 @@
             name="mhb_dealer.provisional_sale_order_template"
             file="mhb_dealer.provisional_sale_order_template"
         />
+         <report
+            id="report_print_receipt_voucher"
+            model="account.payment"
+            report_type="qweb-pdf"
+            string="Receipt Voucher"
+            name="mhb_dealer.receipt_voucher_template"
+            file="mhb_dealer.receipt_voucher_template"
+        />
 </openerp>
