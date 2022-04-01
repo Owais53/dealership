@@ -29,7 +29,6 @@ class InheritCrmLead(models.Model):
 class InheritSaleOrder(models.Model):
     _inherit = 'sale.order'
 
-
     delivery_date = fields.Date(string='Delivery Date')
     po_id = fields.Many2one('purchase.order', 'Purchase Order', compute='GetPO')
     name_seq = fields.Char(string='Order Reference', required=False, copy=False, readonly=True, index=True, )
@@ -41,6 +40,33 @@ class InheritSaleOrder(models.Model):
         ('booking_daraz', 'Booking Vehicle From Daraz'),
         ('investment', 'Investment'),
     ])
+    sale_type = fields.Integer()
+    chassis = fields.Char('Chassis #')
+
+    def action_confirm(self):
+        self.write({'type_id': self.sale_type})
+        res = super(InheritSaleOrder, self).action_confirm()
+        return res
+
+    @api.model
+    def create(self, vlas):
+        if self.partner_id:
+            vlas = {
+                'id': self.partner_id.id,
+                'chassis_no': self.chassis,
+            }
+        self.env['res.partner'].write(vlas)
+
+        # return rec
+
+    def write(self, vlas):
+        if self.partner_id:
+            vlas = {
+                'id': self.partner_id.id,
+                'chassis_no': self.chassis,
+
+            }
+            self.env['res.partner'].write(vlas)
 
     def GetPO(self):
         for rec in self:
@@ -55,8 +81,9 @@ class InheritSaleOrder(models.Model):
         product_id = False
         line_items = []
         for line in self.order_line:
-            vals = {'product_id': line.product_id.id, 'name': line.product_id.name,'chassis':line.chassis,'product_qty': 1, 'product_uom': line.product_id.uom_id.id,
-                 'price_unit': 1, 'sequence': 10, 'date_planned': datetime.now()}
+            vals = {'product_id': line.product_id.id, 'name': line.product_id.name, 'chassis': line.chassis,
+                    'product_qty': 1, 'product_uom': line.product_id.uom_id.id,
+                    'price_unit': 1, 'sequence': 10, 'date_planned': datetime.now()}
             line_items.append(vals)
 
         return {
@@ -91,13 +118,13 @@ class InheritSaleOrder(models.Model):
     def GetSaleOrderLine(self):
         if self.opportunity_id:
             type = self.env['sale.order.type'].search([('name', '=', 'Dealer Sales Order')]).id
-            self.type_id = type
+            # self.type_id = type
+            self.sale_type = type
             values = []
             for product_id in self.opportunity_id.product_id:
                 values.append((0, 0, {'product_id': product_id.id, 'product_uom_qty': 1,
                                       'name': product_id.name, 'price_unit': 0.0, 'product_uom': 1}))
             self.order_line = values
-
 
     @api.model
     def create(self, vals_list):
@@ -118,7 +145,6 @@ class INheritPoID(models.Model):
     _inherit = 'purchase.order'
 
     sale_id = fields.Many2one('sale.order')
-
 
     def CreatePass(self):
         product_id = False
@@ -145,6 +171,22 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     check_validation = fields.Boolean(default=False)
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('waiting', 'Waiting Another Operation'),
+        ('confirmed', 'Waiting'),
+        ('assigned', 'Ready'),
+        ('intransit', 'Intransit'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled'),
+    ], string='Status', compute='_compute_state',
+        copy=False, index=True, readonly=True, store=True, tracking=True,
+        help=" * Draft: The transfer is not confirmed yet. Reservation doesn't apply.\n"
+             " * Waiting another operation: This transfer is waiting for another operation before being ready.\n"
+             " * Waiting: The transfer is waiting for the availability of some products.\n(a) The shipping policy is \"As soon as possible\": no product could be reserved.\n(b) The shipping policy is \"When all products are ready\": not all the products could be reserved.\n"
+             " * Ready: The transfer is ready to be processed.\n(a) The shipping policy is \"As soon as possible\": at least one product has been reserved.\n(b) The shipping policy is \"When all products are ready\": all product have been reserved.\n"
+             " * Done: The transfer has been processed.\n"
+             " * Cancelled: The transfer has been cancelled.")
 
     def beforevalidation(self):
         self.check_validation = True
@@ -447,6 +489,15 @@ class CarInspection(models.Model):
                 self.partner = self.chassis.partner_name
             if self.registration_no:
                 self.registration_no = self.registration_no
+            partners = self.env['res.partner'].search([])
+            for partner in partners:
+                if partner.name == self.chassis.partner_name.name:
+                    if partner.street:
+                        self.address = partner.street
+                    if partner.mobile:
+                        self.mobile = partner.mobile
+                    if partner.phone:
+                        self.phone = partner.phone
             if res:
                 return res
 
@@ -542,6 +593,17 @@ class InheritResPartner(models.Model):
     institution = fields.Char()
     f_name = fields.Char()
     file_upload = fields.Binary('File', attachment=True)
+    chassis_no = fields.Char('Chassis No', compute='get_chassis_from_so')
+
+    @api.depends('chassis_no')
+    def get_chassis_from_so(self):
+        for rec in self:
+            chassis = self.env['sale.order'].search([('partner_id', '=', rec.id)])
+            rec.chassis_no = False
+            for record in chassis:
+                if record.chassis:
+                    rec.chassis_no = record.chassis
+
 
     def name_get(self):
         res = []
@@ -562,16 +624,12 @@ class InheritProductProduct(models.Model):
 class SaleOrderLineInherited(models.Model):
     _inherit = 'sale.order.line'
 
-
     model = fields.Char(related='product_id.model')
     car_type = fields.Char(related='product_id.car_type')
     vehicle_categ = fields.Char(related='product_id.categ_id.name')
     vehicle_two = fields.Char()
     chassis = fields.Char()
     engine = fields.Char()
-    colour = fields.Many2one('colour.colour')
-
-
 
 
 class GateInOut(models.Model):
@@ -624,19 +682,3 @@ class PurchaseLine(models.Model):
     _inherit = 'purchase.order.line'
 
     chassis = fields.Char()
-    colour = fields.Many2one('colour.colour')
-
-
-
-
-class ColourCar(models.Model):
-    _name = 'colour.colour'
-    _rec_name = 'colour'
-
-    colour = fields.Char(string='Color')
-
-
-
-
-
-

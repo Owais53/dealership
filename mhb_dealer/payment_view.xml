@@ -12,7 +12,6 @@
                    </field>
             </field>
         </record>
-
     <record id="view_sale_order_from" model="ir.ui.view">
             <field name="name">sale.order.inherit</field>
             <field name="model">sale.order</field>
@@ -24,31 +23,4 @@
                    </field>
             </field>
         </record>
-
-    <!--    inherit chassis in search view of sale -->
-     <record id="view_sale_order_search" model="ir.ui.view">
-            <field name="name">sale.order.search.inherit</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
-            <field name="arch" type="xml">
-                   <field name="name" position="after">
-                        <field name="order_line" string="Chassis No" filter_domain="[('order_line.chassis', 'ilike', self)]" />
-
-                   </field>
-            </field>
-        </record>
-
-    <!--    inherit chassis in search view of purchase -->
-     <record id="view_purchase_order_search" model="ir.ui.view">
-            <field name="name">purchase.order.search.inherit</field>
-            <field name="model">purchase.order</field>
-            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
-            <field name="arch" type="xml">
-                   <field name="name" position="after">
-                        <field name="order_line" string="Chassis No" filter_domain="[('order_line.chassis', 'ilike', self)]" />
-
-                   </field>
-            </field>
-        </record>
-
 </odoo>

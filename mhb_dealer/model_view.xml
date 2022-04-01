@@ -126,33 +126,11 @@
                 <xpath expr="//field[@name='partner_ref']" position="after">
                     <field name="sale_id" readonly="1"/>
                 </xpath>
-                  <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
-                  <field name="colour"/>
 
-                 </xpath>
 
             </field>
         </record>
-        <record id="view_stock_picking_inherit_new" model="ir.ui.view">
-            <field name="name">stocking.picking.inherit.new</field>
-            <field name="model">stock.picking</field>
-            <field name="inherit_id" ref="stock.view_picking_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="after">
-                    <field name="check_validation" invisible="1"/>
-                </xpath>
-                <xpath expr="//form/header" position="inside">
-                    <button string="Approve" class="oe_stat_button" type="object" name="beforevalidation" attrs="{'invisible': [('check_validation', '=', True)]}"/>
-                </xpath>
 
-                <xpath expr="//form/header/button[@name='button_validate']" position="attributes">
-                    <attribute name="attrs">
-                        {'invisible': [('check_validation', '=', False)]}
-                    </attribute>
-                </xpath>
-
-            </field>
-        </record>
 
         <record id="view_sale_order_inherit_new" model="ir.ui.view">
             <field name="name">sale.order.inherit.new</field>
@@ -170,29 +148,22 @@
                     <field name="po_id" readonly="1"/>
 <!--                    <field name="name_seq2" readonly="1"  force_save="1"/>-->
                 </xpath>
+                 <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="chassis" readonly="0"/>
+                </xpath>
                 <xpath expr="//field[@name='payment_term_id']" position="after">
-                    <field name="delivery_date" string="Delivery Date"/>
-                    <field name="account_type" string="Account Type"/>
                     <field name="name_seq" readonly="1"/>
 
+                    <field name="sale_type" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
-
                     <field name="chassis" string="Chassis" />
                     <field name="engine" string="Engine" />
                     <field name="car_type" string="Type" />
                     <field name="vehicle_categ" string="Category" />
                     <field name="vehicle_two" string="2nd colour choice" />
                     <field name="model" string="Model" />
-
                 </xpath>
-                </xpath>
-                <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
-                  <field name="colour"/>
-
-                 </xpath>
-
-
             </field>
         </record>
 
@@ -218,6 +189,9 @@
                 </xpath>
                 <xpath expr="//field[@name='vat']" position="attributes">
                    <attribute name="string">NTRN/STRN</attribute>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                   <field name="chassis_no"/>
                 </xpath>
             </field>
         </record>
@@ -415,12 +389,8 @@
                                         <field name='mud' string="Mud Flap"/>
                                         <field name='top_cover' string="Top Cover"/>
                                         <field name='original' string="Original"/>
-
                                     </group>
-
-
                                 </group>
-
                             </page>
                             <page string='Product Detail'>
                                 <field name='inspection_ids' string="Inpection ID"
@@ -457,12 +427,8 @@
                                     <field name='mud1' string="Mud Flap"/>
                                     <field name='top_cover1' string="Top Cover"/>
                                     <field name='original1' string="Original"/>
-
                                 </group>
-
-
                             </group>
-
                         </page>
                              <page string="Insurance Claim">
                                 <field name='insurance_ids' string="Insurance ID"
@@ -588,23 +554,6 @@
                 </form>
             </field>
         </record>
-         <!--        colour form-->
-        <record id="color_car" model="ir.ui.view">
-            <field name="name">colour.car</field>
-            <field name="model">colour.colour</field>
-            <field name="arch" type="xml">
-                <form>
-                     <group>
-                    <field name="colour" string="Colour"/>
-                     </group>
-                </form>
-            </field>
-        </record>
-
-
-
-
-
 
         <record id="access_product_categ" model="res.groups">
             <field name="name">Users: Access Product Category</field>
@@ -665,12 +614,6 @@
             <field name="res_model">car.inspection</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <!--   colour action-->
-         <record id="action_colour_form" model="ir.actions.act_window">
-            <field name="name">colour car</field>
-            <field name="res_model">colour.colour</field>
-            <field name="view_mode">tree,form</field>
-        </record>
 
         <menuitem id="menu_car_inspection"  name="Car Inspection" sequence="43"/>
         <menuitem id="inspection_form_menu" name="Inspection Form" action="action_inspection_form" parent="menu_car_inspection"/>
@@ -678,7 +621,6 @@
         <menuitem id="config_menu" name="Configuration"  parent="menu_customer_survey" sequence="70"/>
         <menuitem id="survey_from_menu" name="Survey Form" action="action_customer_survey" parent="menu_customer_survey"/>
         <menuitem id="questions_menu" name="Question" parent="config_menu" sequence="128" action="action_questions"/>
-        <menuitem id="colour_car_form" name="Colour"  sequence="2" action="action_colour_form"/>
 
 
     </data>
