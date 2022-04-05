@@ -450,6 +450,18 @@
                                 </tree>
                              </field>
                          </page>
+                       <page string="Extra Information">
+                                <field name='job_ids' string="Job ID"
+                                colspan="4" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name='job_des'/>
+                                    <field name='labour'/>
+                                    <field name='Part_lub'/>
+                                    <field name='product_uom_qty'/>
+                                    <field name='amount'/>
+                                </tree>
+                             </field>
+                         </page>
                         </notebook>
                     </sheet>
                 </form>
