@@ -691,3 +691,10 @@ class PurchaseLine(models.Model):
     _inherit = 'purchase.order.line'
 
     chassis = fields.Char()
+
+    
+class ColourCar(models.Model):
+    _name = 'colour.colour'
+    _rec_name = 'colour'
+
+    colour = fields.Char(string='Color')    
