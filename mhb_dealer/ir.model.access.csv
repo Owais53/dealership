@@ -9,6 +9,7 @@ access_survey_question_lines,survey_question_lines,model_survey_question_lines,b
 access_car_inspection,car_inspection,model_car_inspection,base.group_user,1,1,1,1
 access_car_insurance,car_insurance_claim,model_insurance_claim_line,base.group_user,1,1,1,1
 access_car_warrenty,car_warrenty_claim,model_warrenty_claim_line,base.group_user,1,1,1,1
+access_job_description,job_description,model_job_description,base.group_user,1,1,1,1
 
 
 
