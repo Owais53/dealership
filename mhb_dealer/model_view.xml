@@ -126,7 +126,10 @@
                 <xpath expr="//field[@name='partner_ref']" position="after">
                     <field name="sale_id" readonly="1"/>
                 </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                  <field name="colour"/>
 
+                </xpath>
 
             </field>
         </record>
@@ -163,6 +166,10 @@
                     <field name="vehicle_categ" string="Category" />
                     <field name="vehicle_two" string="2nd colour choice" />
                     <field name="model" string="Model" />
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                  <field name="colour"/>
+
                 </xpath>
             </field>
         </record>
