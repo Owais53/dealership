@@ -630,6 +630,7 @@ class SaleOrderLineInherited(models.Model):
     vehicle_two = fields.Char()
     chassis = fields.Char()
     engine = fields.Char()
+    colour = fields.Many2one('colour.colour')
 
 
 class GateInOut(models.Model):
@@ -691,6 +692,7 @@ class PurchaseLine(models.Model):
     _inherit = 'purchase.order.line'
 
     chassis = fields.Char()
+    colour = fields.Many2one('colour.colour')
 
     
 class ColourCar(models.Model):
