@@ -482,14 +482,36 @@ class CarInspection(models.Model):
         return result
 
     @api.onchange('chassis')
+    def check_chassis(self):
+        for rec in self:
+            if rec.chassis:
+                service = self.env['car.inspection'].search([('chassis', '=', rec.chassis.chassis)]).chassis
+                sale = self.env['sale.order'].search([('chassis', '=', rec.chassis.chassis)]).chassis
+                if sale and service:
+                    return {
+                        'warning': {'title': "Warning", 'message': "This Car was serviced and sold."},
+                    }
+                if service:
+                    return {
+                        'warning': {'title': "Warning", 'message': "This Car was serviced before"},
+                    }
+                if sale:
+                    return {
+                        'warning': {'title': "Warning", 'message': "This Car was sold before."},
+                    }
+
+    @api.onchange('chassis')
     def Onchange_chassis(self):
         res = {}
         if self.chassis:
             if self.chassis.partner_name:
                 self.partner = self.chassis.partner_name
-            if self.registration_no:
-                self.registration_no = self.registration_no
+            if self.chassis.car_name:
+                self.registration_no = self.chassis.car_name
             partners = self.env['res.partner'].search([])
+            sales = self.env['sale.order'].search([('chassis', '=', self.chassis.chassis)]).order_line
+            for sale in sales:
+                self.car_name = sale.product_id.name
             for partner in partners:
                 if partner.name == self.chassis.partner_name.name:
                     if partner.street:
