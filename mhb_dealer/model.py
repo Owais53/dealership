@@ -677,6 +677,15 @@ class WarrentyClaim(models.Model):
     name = fields.Text(string='Description', required=1)
     product_uom_qty = fields.Float(string='Quantity', digits='Product Unit of Measure', default=1.0)
 
+class JobDescription(models.Model):
+    _name = 'job.description'
+
+    job_id = fields.Many2one('car.inspection')
+    job_des = fields.Char('Jobs Description & Remarks')
+    labour = fields.Char(string='Labour')
+    Part_lub = fields.Char(string='Parts & Lubricant Description')
+    product_uom_qty = fields.Float(string='Quantity', digits='Product Unit of Measure', default=1.0)
+    amount = fields.Char(string='Amount')
 
 class PurchaseLine(models.Model):
     _inherit = 'purchase.order.line'
