@@ -294,6 +294,7 @@ class CarInspection(models.Model):
     inspection_ids = fields.One2many('gate.order.line', 'inspection_id')
     insurance_ids = fields.One2many('insurance.claim.line', 'insurance_id')
     warrenty_ids = fields.One2many('warrenty.claim.line', 'warrenty_id')
+    job_ids = fields.One2many('job.description', 'job_id')
 
     # state = fields.Selection([('Draft', 'Draft'), ('confirmed','Confirmed'), ('so','Sale Order'),('in_progress','In Progress'),('complete','Complete')], default='Draft')
     state = fields.Selection([('Draft', 'Draft'), ('receiving_checklist', 'Receiving Checklist'), ('so', 'Sale Order'),
