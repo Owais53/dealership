@@ -656,7 +656,7 @@
        
 
         <menuitem id="menu_car_inspection"  name="Car Inspection" sequence="43"/>
-        <menuitem id="inspection_form_menu" name="Inspection Form" action="action_inspection_form" parent="menu_car_inspection"/>
+        <menuitem id="inspection_form_menu" name="Job Card" action="action_inspection_form" parent="menu_car_inspection"/>
         <menuitem id="menu_customer_survey"  name="Customer Survey" sequence="44"/>
         <menuitem id="config_menu" name="Configuration"  parent="menu_customer_survey" sequence="70"/>
         <menuitem id="survey_from_menu" name="Survey Form" action="action_customer_survey" parent="menu_customer_survey"/>
