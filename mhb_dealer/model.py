@@ -44,9 +44,10 @@ class InheritSaleOrder(models.Model):
     chassis = fields.Char('Chassis #')
 
     def action_confirm(self):
-        self.write({'type_id': self.sale_type})
-        res = super(InheritSaleOrder, self).action_confirm()
-        return res
+        if self.sale_type:
+            self.write({'type_id': self.sale_type})
+        return super(InheritSaleOrder, self).action_confirm()
+
 
     @api.model
     def create(self, vlas):
