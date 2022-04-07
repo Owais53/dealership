@@ -49,25 +49,7 @@ class InheritSaleOrder(models.Model):
         return super(InheritSaleOrder, self).action_confirm()
 
 
-    @api.model
-    def create(self, vlas):
-        if self.partner_id:
-            vlas = {
-                'id': self.partner_id.id,
-                'chassis_no': self.chassis,
-            }
-        self.env['res.partner'].write(vlas)
 
-        # return rec
-
-    def write(self, vlas):
-        if self.partner_id:
-            vlas = {
-                'id': self.partner_id.id,
-                'chassis_no': self.chassis,
-
-            }
-            self.env['res.partner'].write(vlas)
 
     def GetPO(self):
         for rec in self:
