@@ -395,7 +395,7 @@
                                         <field name='monogram' string="Monogram"/>
                                         <field name='mud' string="Mud Flap"/>
                                         <field name='top_cover' string="Top Cover"/>
-                                        <field name='original' string="Original"/>
+                                        <field name='original' string="Original Number Plate "/>
                                     </group>
                                 </group>
                             </page>
@@ -447,7 +447,7 @@
                                 </tree>
                              </field>
                          </page>
-                         <page string="warrenty Claim">
+                         <page string="Warranty Claim">
                                 <field name='warrenty_ids' string="Warranty ID"
                                 colspan="4" widget="one2many_list">
                                 <tree editable='bottom'>
@@ -464,8 +464,7 @@
                                     <field name='job_des'/>
                                     <field name='labour'/>
                                     <field name='Part_lub'/>
-                                    <field name='product_uom_qty'/>
-                                    <field name='amount'/>
+
                                 </tree>
                              </field>
                          </page>
@@ -642,7 +641,7 @@
         </record>
 
         <record id="action_inspection_form" model="ir.actions.act_window">
-            <field name="name">Inspection Form</field>
+            <field name="name">Job Card</field>
             <field name="res_model">car.inspection</field>
             <field name="view_mode">tree,form</field>
         </record>

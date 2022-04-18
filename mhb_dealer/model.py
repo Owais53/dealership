@@ -690,7 +690,7 @@ class JobDescription(models.Model):
     job_id = fields.Many2one('car.inspection')
     job_des = fields.Char('Jobs Description & Remarks')
     labour = fields.Char(string='Labour')
-    Part_lub = fields.Char(string='Parts & Lubricant Description')
+    Part_lub = fields.Many2one('product.product',string='Parts & Lubricant Description')
     product_uom_qty = fields.Float(string='Quantity', digits='Product Unit of Measure', default=1.0)
     amount = fields.Char(string='Amount')
 

@@ -5,542 +5,691 @@
     <template id="mhb_dealer.car_inspection_report_template">
 
         <t t-call="web.html_container">
-            <t t-call="web.external_layout">
+            <t t-call="web.basic_layout">
                 <t t-foreach="docs" t-as="doc">
                     <div class="page">
 
-                    <div class="oe_structure"/>
-                    <br/>
+                        <div class="oe_structure"/>
+                   <style>
 
-                    <div>
-                        <h3 class="text-center" >
-                            <strong>INSPECTION FORM</strong>
-                        </h3>
-                    </div>
+                                        * {
+                                          box-sizing: border-box;
+                                        }
 
-                    <div>
 
-                    </div>
+
+                            </style>
+<!--                             <table width="100%" style="border:1px solid black">-->
+<!--                                <tr>-->
+
+                            <div style="display:inline-block;margin-left:30%;">
+                                <h3 style="text-align:center;margin-top:10px;font-size:24px;padding-left: 40px;"><center>Prince Automine</center></h3>
+                                 <h5 style="text-align:center;margin-top:2px;font-size:15px;padding-left: 40px; "><center>Car Inspection Report</center></h5>
+                                </div>
+                                    <table style="border-bottom:2px solid black; margin-bottom:20px; width:100% ;font-size: 10px;">
+                                        <tr>
+                                            <td>
+                                   <strong style="font-size:12px;">Booking Date:</strong><span  style="font-size:12px;" t-field="doc.date"/>
+                                             </td>
+                                             <td>
+                                    <strong style="padding-left:68%;font-size:12px;">Sequence No#</strong><span  style="font-size:12px;" t-field="doc.name_seq"/>
+                                              </td>
+
+                                        </tr>
+                                    </table>
+                            </div>
 <!--                        #########################Basic Details######################################################################-->
                     <br/>
-                    <div class="row mt32 mb32" id="informations" style="margin:auto;">
-                    <div>
-                        <table style="border:1px solid black;margin-right:40%;">
-                            <tbody class="sale_tbody">
-                                <tr>
-                                    <td class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>Customer:</strong>
-                                    </td>
-                                    <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.partner"/>
-                                    </td>
-<!--                                    <span style="font-size:18px; font-weight:bold;">Customer<span style="font-size:16px;" t-if="doc.partner" t-field="doc.partner"/>-->
-<!--                                    </span>-->
+                        <table style="border: 1px solid black;width:100%;">
+                        <tbody>
+                        <tr style="border: 1px solid black;">
+                        <td style="text-align:center; border: 1px solid black; font-size: 20px; "><strong>Customer Estimate</strong></td>
+                        <td style="text-align:center;width: 363.5px; height: 42.5px; font-size: 20px;"><strong>Type</strong></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;" ><strong>Customer:</strong>
 
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>Address:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <span t-field="doc.address"/>
-                                    </td>
-
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>User:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.user_id"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Chassis Number:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.chassis"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Insurance Claim:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.insurance_id"/>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                             <tbody class="sale_tbody">
-                                <tr>
-                                    <td width="3%" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Mobile:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.mobile"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Phone:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.phone"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Promise Date:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.date"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Registration:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.registration_no"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Name Sequence:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.name_seq"/>
-                                    </td>
-
-                                </tr>
-
-
-                            </tbody>
-                            <tbody class="sale_tbody">
-                                <tr>
-                                    <td width="3%" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Engine No:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.engine_no"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Make:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.make"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Model:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.model"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Color:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.color"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Km:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.km"/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                             <tbody class="sale_tbody">
-                                 <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Warranty Claim:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.warranty_id"/>
-                                    </td>
-                                 <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Sale Order Reference:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.sale_o"/>
-                                    </td>
-
-                             </tbody>
+                            <span t-field="doc.partner" style="font-size: 13px;"/>
+                            </td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Car Name:</strong><span t-field="doc.car_name" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Address:</strong><span t-field="doc.address" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Chassis:</strong><span t-field="doc.chassis" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>User:</strong><span t-field="doc.user_id" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Engine No:</strong><span t-field="doc.engine_no" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px; "><strong>Mobile</strong><span t-field="doc.mobile" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Make</strong><span t-field="doc.make" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Phone:</strong><span t-field="doc.phone" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Model:</strong></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Promise Date:</strong><span t-field="doc.date" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Color:</strong><span t-field="doc.color" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Sale Order Reference:</strong><span t-field="doc.sale_o" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>KMs:</strong><span t-field="doc.km" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Warranty Claim:</strong><span t-field="doc.warranty_claim" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong>Registration No:</strong><span t-field="doc.registration_no" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="border: 1px solid black;">
+                        <td style="width: 364.5px; height: 25px;padding-left: 10px;"><strong>Insurance Claim:</strong><span t-field="doc.insurance_claim" style="font-size: 13px;"/></td>
+                        <td style="border: 1px solid black;padding-left: 10px;"><strong></strong></td>
+                        </tr>
+                        </tbody>
                         </table>
+                    <br/>
+
+<!--                        </table>-->
 
 
+ <!---receiving check-->
 
-                </div>
-                    </div>
+                    <table style="height: 267px; width: 100%;">
+                        <tbody>
+                        <tr style="height: 28px;">
+                        <td style="width: 300px; border: 1px solid black; font-size: 19px; height: 28px;padding-left: 5px">Receiving Checklist</td>
+                        <td style="width: 59px; border: 1px solid black; font-size: 15px; height: 28px;padding-left: 5px">Tick</td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 28px;"></td>
+                        <td style="width: 44.9062px; border: 1px solid black; font-size: 15px; height: 28px;padding-left: 5px">Tick</td>
+                        </tr>
+                        <tr style="height: 26.9844px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26.9844px;padding-left: 5px">Cassettes Player</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cassettes_player else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26.9844px;padding-left: 5px">Fuel</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26.9844px;padding-left: 5px"><span t-field="doc.fuel" style="font-size: 13px;"/></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">CD</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cd else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Tool Kit</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.tool else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">Cassettes</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cassettes else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Jack and Handle</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.jack else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">CIG Lighter</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cig else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Wheel Spanner</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.wheel else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">Floor Mats</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.floor else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Spare Wheel</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.spare else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">R.V Mirror</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.rv else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Monogram</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.monogram else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">S.V Mirror</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.sv else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Mud Flap</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.mud else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">Wiper Blade</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.wiper else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Top Cover</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.top_cover else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">VIN Blade</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.vin else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Original Number Plate</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.original else None" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                     <!---return check-->
+                    <table style="height: 267px; width: 100%;">
+                        <tbody>
+                        <tr style="height: 28px;">
+                        <td style="width: 300px; border: 1px solid black; font-size: 19px; height: 28px;padding-left: 5px">Return Checklist</td>
+                        <td style="width: 59px; border: 1px solid black; font-size: 15px; height: 28px;padding-left: 5px">Tick</td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 28px;"></td>
+                        <td style="width: 44.9062px; border: 1px solid black; font-size: 15px; height: 28px;padding-left: 5px">Tick</td>
+                        </tr>
+                        <tr style="height: 26.9844px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26.9844px;padding-left: 5px">Cassettes Player</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cassettes_player1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26.9844px;padding-left: 5px"></td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26.9844px;padding-left: 5px"></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">CD</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cd1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Tool Kit</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.tool1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">Cassettes</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cassettes1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Jack and Handle</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.jack1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">CIG Lighter</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.cig1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Wheel Spanner</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.wheel1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">Floor Mats</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.floor1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Spare Wheel</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.spare1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">R.V Mirror</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.rv1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Monogram</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.monogram1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">S.V Mirror</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.sv1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Mud Flap</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.mud1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">Wiper Blade</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.wiper1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Top Cover</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.top_cover1 else None" /></td>
+                        </tr>
+                        <tr style="height: 26px;">
+                        <td style="width: 300px; border: 1px solid black; height: 26px;padding-left: 5px">VIN Blade</td>
+                        <td style="width: 59px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.vin1 else None" /></td>
+                        <td style="width: 316.094px; border: 1px solid black; height: 26px;padding-left: 5px">Original Number Plate</td>
+                        <td style="width: 44.9062px; border: 1px solid black; height: 26px;padding-left: 5px"><input type="checkbox" disabled="True" t-att-checked="'checked' if doc.original1 else None" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                 <br/><br/><br/>
-<!--###############product detials##################################################-->
-                       <h4 class="text-center">
-                            <strong>PRODUCT DETAIL</strong>
-                        </h4>
-                        <br/><br/>
-                    <div class="row mt32 mb32" id="informations">
-<!--                    <div style="border: 2px solid black;">-->
+                    <br/><br/>
 
-
-                        <table>
-                            <tbody class="sale_tbody">
-                                <thead>
-
-                                <tr>
-                                    <td width="2%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;">
-                                    <strong>Products</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                    <strong>Description</strong>
-                                    </td>
-                                    <td width="2%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;">
-                                    <strong>Quantity</strong>
-                                    </td>
-
-                                </tr>
-                                </thead>
-                                 <tr t-foreach="doc.inspection_ids" t-as="l">
-
-                                     <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="l.product_id"/>
-                                     </td>
-                                     <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="l.name"/>
-                                     </td>
-                                     <td class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="l.product_uom_qty"/>
-                                     </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br/><br/><br/>
-
- <!--receiving check-->
-                        <h4 class="text-center">
-                            <strong>RECEIVING CHECKLIST</strong>
-                        </h4>
-                        <br/><br/><br/>
-
-
-                    <div class="row mt32 mb32" id="informations">
-
-                        <table>
-                            <tbody class="sale_tbody">
-                                <tr>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>Cassettes:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <span t-field="doc.cassettes_player"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>CD:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <span t-field="doc.cd"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>Cassettes Player :</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;"  >
-                                        <span t-field="doc.cassettes"/>
-                                    </td>
-                                     <td width="3%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>CIG Lighter:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <span t-field="doc.cig"/>
-                                    </td>
-
-
-                                </tr>
-
-                            </tbody>
-                             <tbody class="sale_tbody">
-                                <tr>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>Floor Mats:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <span t-field="doc.floor"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>R.V Mirror:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.rv"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>S.V Mirror:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.sv"/>
-                                    </td>
-                                     <td width="3%"  class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Wiper Blade:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.wiper"/>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                            <tbody class="sale_tbody">
-                                <tr>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>V.I.N Blade:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.vin"/>
-                                    </td>
-
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Wheel Spanner:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.wheel"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Tool Kit:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.tool"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Jack and Handle:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.jack"/>
-                                    </td>
-                                </tr>
-                                <tr>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Spare Wheel</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.spare"/>
-                                    </td>
-
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Monogram:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.monogram"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Mud Flap:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.mud"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Top Cover:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.top_cover"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Original:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.original"/>
-                                    </td>
-                                    <div  style="border: 1px solid black;">
-                                    <td width="0.7" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Fuel:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.fuel"/>
-                                    </td>
-                                    </div>
-
+                    <!--###############Extra Information##################################################-->
+                    <h6><center>Extra Information</center></h6>
+                       <table style="border-bottom: 1px solid black;border-top: 1px solid black; border-right:1px solid black; border-left: 1px solid black; width: 100%; height: 30px;">
+                            <tbody>
+                                <tr style="height: 10.5px;">
+                                <th style="border-right: 1px solid black; height: 10.5px; font-size: 15px; text-align: left;  width: 40%;padding-left: 5px;">Jobs description &amp; Remarks</th>
+                                <th style="border-right: 1px solid black; height: 6px; font-size: 15px; text-align: left;  width: 30%;padding-left: 5px; ">Labour</th>
+                                    <th style="height: 6px; font-size: 15px; text-align: left; width: 30%;padding-left: 5px; ">Parts &amp; Lubricants description</th>
                                 </tr>
                             </tbody>
+                       </table>
+<!--                        <table style="width: 100%; height: 40px;">-->
+                             <table style="border-bottom:1px solid black; border-right:1px solid black; border-left: 1px solid black;width:100%;">
+                             <tr  t-foreach="docs.job_ids" t-as="l">
+                                    <td style="border-right: 1px solid black; height: 10.5px; text-align: left; width: 40%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.job_des" t-field="l.job_des"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.labour" t-field="l.labour"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.Part_lub" t-field="l.Part_lub"/></td>
+                             </tr>
+                             </table>
+                    <br/>
+                    <!--###############Product Detail##################################################-->
+                    <h6><center>Product Detail</center></h6>
+                     <table style="border-bottom: 1px solid black;border-top: 1px solid black; border-right:1px solid black; border-left: 1px solid black; width: 100%; height: 30px;">
+                            <tbody>
+                                <tr style="height: 10.5px;">
+                                <th style="border-right: 1px solid black; height: 10.5px; font-size: 15px; text-align: left;  width: 40%;padding-left: 5px;">Product</th>
+                                <th style="border-right: 1px solid black; height: 6px; font-size: 15px; text-align: left;  width: 30%;padding-left: 5px; ">Description</th>
+                                    <th style="height: 6px; font-size: 15px; text-align: left; width: 30%;padding-left: 5px; ">Quantity</th>
+                                </tr>
+                            </tbody>
+                       </table>
+<!--                        <table style="width: 100%; height: 40px;">-->
+                             <table style="border-bottom:1px solid black; border-right:1px solid black; border-left: 1px solid black;width:100%;">
+                             <tr  t-foreach="docs.inspection_ids" t-as="l">
+                                    <td style="border-right: 1px solid black; height: 10.5px; text-align: left; width: 40%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.product_id" t-field="l.product_id"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.name" t-field="l.name"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.product_uom_qty" t-field="l.product_uom_qty"/></td>
+                             </tr>
+                             </table>
+                    <br/>
 
-                        </table>
+                    <!--###############Insurance Claim##################################################-->
+                    <h6><center>Insurance Claim</center></h6>
+
+                     <table style="border-bottom: 1px solid black;border-top: 1px solid black; border-right:1px solid black; border-left: 1px solid black; width: 100%; height: 30px;">
+                            <tbody>
+                                <tr style="height: 10.5px;">
+                                <th style="border-right: 1px solid black; height: 10.5px; font-size: 15px; text-align: left;  width: 40%;padding-left: 5px;">Product</th>
+                                <th style="border-right: 1px solid black; height: 6px; font-size: 15px; text-align: left;  width: 30%;padding-left: 5px; ">Description</th>
+                                    <th style="height: 6px; font-size: 15px; text-align: left; width: 30%;padding-left: 5px; ">Quantity</th>
+                                </tr>
+                            </tbody>
+                       </table>
+<!--                        <table style="width: 100%; height: 40px;">-->
+                             <table style="border-bottom:1px solid black; border-right:1px solid black; border-left: 1px solid black;width:100%;">
+                             <tr  t-foreach="docs.insurance_ids" t-as="l">
+                                    <td style="border-right: 1px solid black; height: 10.5px; text-align: left; width: 40%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.product_id" t-field="l.product_id"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.name" t-field="l.name"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.product_uom_qty" t-field="l.product_uom_qty"/></td>
+                             </tr>
+                             </table>
+                    <br/>
+
+                    <!--###############Warranty Claim##################################################-->
+                    <h6><center>Warranty Claim</center></h6>
+
+                     <table style="border-bottom: 1px solid black;border-top: 1px solid black; border-right:1px solid black; border-left: 1px solid black; width: 100%; height: 30px;">
+                            <tbody>
+                                <tr style="height: 10.5px;">
+                                <th style="border-right: 1px solid black; height: 10.5px; font-size: 15px; text-align: left;  width: 40%;padding-left: 5px;">Product</th>
+                                <th style="border-right: 1px solid black; height: 6px; font-size: 15px; text-align: left;  width: 30%;padding-left: 5px; ">Description</th>
+                                    <th style="height: 6px; font-size: 15px; text-align: left; width: 30%;padding-left: 5px; ">Quantity</th>
+                                </tr>
+                            </tbody>
+                       </table>
+<!--                        <table style="width: 100%; height: 40px;">-->
+                             <table style="border-bottom:1px solid black; border-right:1px solid black; border-left: 1px solid black;width:100%;">
+                             <tr  t-foreach="docs.warrenty_ids" t-as="l">
+                                    <td style="border-right: 1px solid black; height: 10.5px; text-align: left; width: 40%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.product_id" t-field="l.product_id"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.name" t-field="l.name"/></td>
+                                    <td style="border-right: 1px solid black; height: 6px; text-align: left;  width: 30%;padding-left: 5px;"><span style="font-size:12px;" t-if="l.product_uom_qty" t-field="l.product_uom_qty"/></td>
+                             </tr>
+                             </table>
+
+                    <br/>
+
+                      <table style="border-top:1px solid black; border-bottom:1px solid black; border-right:1px solid black; border-left: 1px solid black;width:100%;">
+                          <th style="border-right: 1px solid black; height: 10.5px; font-size: 20px; text-align: center;  width: 40%;;">Total Job card Amount</th>
+                      </table>
+                      <table style="border-bottom: 1px solid black;border-right:1px solid black; border-left: 1px solid black; width: 100%; height: 30px;">
+                            <tbody>
+                                <tr style="height: 10.5px;">
+                                <th style="border-right: 1px solid black; height: 10.5px; font-size: 15px; text-align: left;  width: 50%;padding-left: 5px;">GST Amount:</th>
+                                    <th style="height: 6px; font-size: 15px; text-align: left; width: 50%;padding-left: 5px; ">Technical Advisor:</th>
+                                </tr>
+                            </tbody>
+                       </table><table style="border-bottom: 1px solid black;border-right:1px solid black; border-left: 1px solid black; width: 100%; height: 30px;">
+                            <tbody>
+                                <tr style="height: 10.5px;">
+                                <th style="border-right: 1px solid black; height: 10.5px; font-size: 15px; text-align: left;  width: 50%;padding-left: 5px;">Total Amount(Rs):</th>
+                                    <th style="height: 6px; font-size: 15px; text-align: left; width: 50%;padding-left: 5px; ">Technician:</th>
+                                </tr>
+                            </tbody>
+                       </table>
+
+
+                    <br/>
 
 
 
-                </div>
-                        <br/><br/><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                        <br/><br/><br/>-->
+
+
+<!--                    <div class="row mt32 mb32" id="informations">-->
+
+<!--                        <table>-->
+<!--                            <tbody class="sale_tbody">-->
+<!--                                <tr>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <strong>Cassettes:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+
+<!--                                        <input type="checkbox" disabled="True"-->
+<!--                                                      t-att-checked="'checked' if doc.cassettes_player else None" />-->
+
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <strong>CD:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <span t-field="doc.cd"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <strong>Cassettes Player :</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;"  >-->
+<!--                                        <span t-field="doc.cassettes"/>-->
+<!--                                    </td>-->
+<!--                                     <td width="3%" class="text-left"  style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <strong>CIG Lighter:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <span t-field="doc.cig"/>-->
+<!--                                    </td>-->
+
+
+<!--                                </tr>-->
+
+<!--                            </tbody>-->
+<!--                             <tbody class="sale_tbody">-->
+<!--                                <tr>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <strong>Floor Mats:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <span t-field="doc.floor"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>R.V Mirror:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.rv"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>S.V Mirror:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.sv"/>-->
+<!--                                    </td>-->
+<!--                                     <td width="3%"  class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Wiper Blade:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.wiper"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+
+<!--                            </tbody>-->
+<!--                            <tbody class="sale_tbody">-->
+<!--                                <tr>-->
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>V.I.N Blade:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.vin"/>-->
+<!--                                    </td>-->
+
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Wheel Spanner:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.wheel"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Tool Kit:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.tool"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Jack and Handle:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.jack"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Spare Wheel</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.spare"/>-->
+<!--                                    </td>-->
+
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Monogram:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.monogram"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Mud Flap:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.mud"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Top Cover:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.top_cover"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Original:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.original"/>-->
+<!--                                    </td>-->
+<!--                                    <div  style="border: 1px solid black;">-->
+<!--                                    <td width="0.7" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Fuel:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.fuel"/>-->
+<!--                                    </td>-->
+<!--                                    </div>-->
+
+<!--                                </tr>-->
+<!--                            </tbody>-->
+
+<!--                        </table>-->
+
+
+
+<!--                </div>-->
+<!--                        <br/><br/><br/>-->
 
   <!--return check-->################################################################################################
 
-                        <h4 class="text-center">
-                            <strong>RETURN CHECKLIST</strong>
-                        </h4>
-                        <br/><br/>
+<!--                        <h4 class="text-center">-->
+<!--                            <strong>RETURN CHECKLIST</strong>-->
+<!--                        </h4>-->
+<!--                        <br/><br/>-->
 
 
-                    <div class="row mt32 mb32" id="informations">
-                    <div>
-                        <table>
-                            <tbody class="sale_tbody">
-                                <tr>
-                                     <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <strong>Cassettes:</strong>
-                                    </td>
+<!--                    <div class="row mt32 mb32" id="informations">-->
+<!--                    <div>-->
+<!--                        <table>-->
+<!--                            <tbody class="sale_tbody">-->
+<!--                                <tr>-->
+<!--                                     <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <strong>Cassettes:</strong>-->
+<!--                                    </td>-->
 
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >
-                                        <span t-field="doc.cassettes_player1"/>
-                                    </td>
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>CD:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.cd1"/>
-                                    </td>
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;" >-->
+<!--                                        <span t-field="doc.cassettes_player1"/>-->
+<!--                                    </td>-->
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>CD:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.cd1"/>-->
+<!--                                    </td>-->
 
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Cassettes:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.cassettes1"/>
-                                    </td>
-                                     <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>CIG Lighter:</strong>
-                                    </td>
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Cassettes:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.cassettes1"/>-->
+<!--                                    </td>-->
+<!--                                     <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>CIG Lighter:</strong>-->
+<!--                                    </td>-->
 
-                                    <td width="2%" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.cig1"/>
-                                    </td>
-
-
-                                </tr>
-
-                            </tbody>
-                             <tbody class="sale_tbody">
-                                <tr>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Floor Mats:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.floor1"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>R.V Mirror:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.rv1"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>S.V Mirror:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.sv1"/>
-                                    </td>
-                                     <td width="3%" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Wiper Blade:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.wiper1"/>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                            <tbody class="sale_tbody">
-                                <tr>
-                                    <td width="3%">
-                                        <strong>V.I.N Blade:</strong>
-                                    </td>
-
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.vin1"/>
-                                    </td>
+<!--                                    <td width="2%" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.cig1"/>-->
+<!--                                    </td>-->
 
 
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Wheel Spanner:</strong>
-                                    </td>
+<!--                                </tr>-->
 
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.wheel1"/>
-                                    </td>
+<!--                            </tbody>-->
+<!--                             <tbody class="sale_tbody">-->
+<!--                                <tr>-->
 
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Tool Kit:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.tool1"/>
-                                    </td>
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Floor Mats:</strong>-->
+<!--                                    </td>-->
 
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Jack and Handle:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.jack1"/>
-                                    </td>
-                                </tr>
-                                <tr>
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.floor1"/>-->
+<!--                                    </td>-->
 
-                                    <td width="3%">
-                                        <strong>Spare Wheel</strong>
-                                    </td>
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>R.V Mirror:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.rv1"/>-->
+<!--                                    </td>-->
 
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.spare1"/>
-                                    </td>
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>S.V Mirror:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.sv1"/>-->
+<!--                                    </td>-->
+<!--                                     <td width="3%" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Wiper Blade:</strong>-->
+<!--                                    </td>-->
 
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.wiper1"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
 
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Monogram:</strong>
-                                    </td>
+<!--                            </tbody>-->
+<!--                            <tbody class="sale_tbody">-->
+<!--                                <tr>-->
+<!--                                    <td width="3%">-->
+<!--                                        <strong>V.I.N Blade:</strong>-->
+<!--                                    </td>-->
 
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.monogram1"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Mud Flap:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.mud1"/>
-                                    </td>
-
-                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <strong>Top Cover:</strong>
-                                    </td>
-                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">
-                                        <span t-field="doc.top_cover1"/>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.vin1"/>-->
+<!--                                    </td>-->
 
 
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Wheel Spanner:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.wheel1"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Tool Kit:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.tool1"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Jack and Handle:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.jack1"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+
+<!--                                    <td width="3%">-->
+<!--                                        <strong>Spare Wheel</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.spare1"/>-->
+<!--                                    </td>-->
+
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Monogram:</strong>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.monogram1"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Mud Flap:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.mud1"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td width="3%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <strong>Top Cover:</strong>-->
+<!--                                    </td>-->
+<!--                                    <td width="2%" class="text-left" style="border: 1px solid black; border-collapse: collapse;">-->
+<!--                                        <span t-field="doc.top_cover1"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+
+<!--                        </table>-->
+
+<!--                    </div>-->
+
+<!--                </div>-->
 
 
 
-                </div>
+
+
+
                 </t>
             </t>
         </t>
